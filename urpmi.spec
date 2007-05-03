@@ -32,7 +32,7 @@ Summary:	Command-line software installation tools
 URL:		http://search.cpan.org/dist/%{name}/
 Requires:	%{req_webfetch} eject gnupg
 Requires(post):	perl-Locale-gettext >= 1.05-4mdv
-Requires(post):	perl-URPM >= 1.61
+Requires(post):	perl-URPM >= 1.62
 # gzip is used in perl-URPM for synthesis and hdlist
 Requires(post):	gzip
 #- this one is require'd by urpmq, so it's not found [yet] by perl.req
@@ -42,7 +42,7 @@ BuildRequires:	gettext
 BuildRequires:	perl
 BuildRequires:	perl-File-Slurp
 BuildRequires:	perl(Net::LDAP)
-BuildRequires:	perl-URPM >= 1.61
+BuildRequires:	perl-URPM >= 1.62
 BuildRequires:	perl-MDV-Packdrakeng
 BuildRequires:	perl-MDV-Distribconf
 BuildRequires:	perl-Locale-gettext >= 1.05-4mdv
