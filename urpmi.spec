@@ -56,6 +56,7 @@ Conflicts:	man-pages-fr < 1.58.0-8mdk
 Conflicts:	rpmdrake < 3.19
 Conflicts:	curl < 7.13.0
 Conflicts:	wget < 1.10.2-6mdv2008.0
+Conflicts:	mandrake-mime
 
 %description
 urpmi is Mandriva Linux's console-based software installation tool. You can
@@ -171,6 +172,26 @@ MimeType=application/x-rpm;application/x-urpmi;
 EOF
 %endif
 
+mkdir -p %buildroot%_datadir/mimelnk/application
+cat > %buildroot%_datadir/mimelnk/application/x-urpmi.desktop << EOF
+[Desktop Entry]
+Type=MimeType
+Comment=urpmi file
+MimeType=application/x-urpmi
+Patterns=*.urpmi;
+EOF
+
+mkdir -p %buildroot%_datadir/mime/packages
+cat > %buildroot%_datadir/mime/packages/gurpmi.xml << EOF
+<?xml version="1.0"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-urpmi">
+    <comment>urpmi file</comment>
+    <glob pattern="*.urpmi"/>
+  </mime-type>
+</mime-info>
+EOF
+
 %find_lang %{name}
 
 %clean
@@ -197,10 +218,12 @@ if (-e "/etc/urpmi/urpmi.cfg") {
 %post -n gurpmi
 %{update_menus}
 %{update_desktop_database}
+%{update_mime_database}
 
 %postun -n gurpmi
 %{clean_menus}
 %{clean_desktop_database}
+%{clean_mime_database}
 %endif
 
 %files -f %{name}.lang
@@ -266,6 +289,8 @@ if (-e "/etc/urpmi/urpmi.cfg") {
 %{_bindir}/gurpmi2
 %{_sbindir}/gurpmi2
 %{_datadir}/applications/mandriva-gurpmi.desktop
+%{_datadir}/mimelnk/application/x-urpmi.desktop
+%{_datadir}/mime/packages/gurpmi.xml
 %{compat_perl_vendorlib}/gurpmi.pm
 %endif
 
