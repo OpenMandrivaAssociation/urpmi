@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	4.9.27
+%define version	4.9.28
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -32,7 +32,7 @@ Summary:	Command-line software installation tools
 URL:		http://search.cpan.org/dist/%{name}/
 Requires:	%{req_webfetch} eject gnupg
 Requires(post):	perl-Locale-gettext >= 1.05-4mdv
-Requires(post):	perl-URPM >= 1.63
+Requires(post):	perl-URPM >= 1.68
 # gzip is used in perl-URPM for synthesis and hdlist
 Requires(post):	gzip
 #- this one is require'd by urpmq, so it's not found [yet] by perl.req
