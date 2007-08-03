@@ -167,7 +167,7 @@ Exec=%{_bindir}/gurpmi %%F
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GTK;X-MandrivaLinux-.hidden
+Categories=GTK;X-MandrivaLinux-.hidden;
 MimeType=application/x-rpm;application/x-urpmi;
 EOF
 %endif
