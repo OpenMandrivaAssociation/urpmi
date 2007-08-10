@@ -12,8 +12,8 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	4.9.29
-%define release	%mkrel 2
+%define version	4.9.30
+%define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
 
@@ -270,6 +270,7 @@ if (-e "/etc/urpmi/urpmi.cfg") {
 %{compat_perl_vendorlib}/urpm/get_pkgs.pm
 %{compat_perl_vendorlib}/urpm/install.pm
 %{compat_perl_vendorlib}/urpm/lock.pm
+%{compat_perl_vendorlib}/urpm/main_loop.pm
 %{compat_perl_vendorlib}/urpm/md5sum.pm
 %{compat_perl_vendorlib}/urpm/media.pm
 %{compat_perl_vendorlib}/urpm/msg.pm
