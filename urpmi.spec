@@ -13,7 +13,7 @@
 
 %define name	urpmi
 %define version	4.10.4
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
 
@@ -37,6 +37,7 @@ Requires(post):	perl-URPM >= 1.73
 Requires(post):	gzip
 #- this one is require'd by urpmq, so it's not found [yet] by perl.req
 Requires:	perl-MDV-Packdrakeng >= 1.01
+Requires:	meta-task
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext
 BuildRequires:	perl
