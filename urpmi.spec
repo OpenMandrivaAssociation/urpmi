@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	4.10.10
+%define version	4.10.11
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -207,6 +207,18 @@ if [ "$1" = "0" ]; then
   rm -rf partial/* headers/* rpms/*
 fi
 exit 0
+
+%triggerprein -- urpmi < 4.10.6
+if [ -d /var/lib/urpmi ]; then
+   cd /var/lib/urpmi
+   for i in hdlist*.cz; do 
+      if [ -e synthesis.$i ]; then
+        echo "forcing synthesis.$i to be regenerated"	
+        rm synthesis.$i
+	# needed to ensure synthesis has "suggests"
+      fi
+   done
+fi
 
 %post -p /usr/bin/perl
 use urpm::media;
