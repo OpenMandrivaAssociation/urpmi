@@ -212,9 +212,9 @@ exit 0
 if [ -d /var/lib/urpmi ]; then
    cd /var/lib/urpmi
    for i in hdlist*.cz; do 
-      if [ -e synthesis.$i ]; then
+      if [ -e "synthesis.$i" ]; then
         echo "forcing synthesis.$i to be regenerated"	
-        rm synthesis.$i
+        rm "synthesis.$i"
 	# needed to ensure synthesis has "suggests"
       fi
    done
