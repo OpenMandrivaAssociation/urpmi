@@ -120,7 +120,7 @@ urpmi configuration (notably media) in an LDAP directory.
 Summary:	A tool to manage rpm repackaging and rollback
 Requires:	urpmi >= %{version}-%{release}
 Requires:	perl
-Requires:	perl-DateManip
+Requires:	perl(Date::Manip)
 Group:		%{group}
 
 %description -n urpmi-recover
