@@ -252,7 +252,7 @@ if (-e "/etc/urpmi/urpmi.cfg") {
 %dir /var/cache/urpmi/rpms
 %config(noreplace) /etc/urpmi/skip.list
 %config(noreplace) /etc/urpmi/inst.list
-%config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
+%{_sysconfdir}/bash_completion.d/%{name}
 %{_bindir}/urpmi_rpm-find-leaves
 %{_bindir}/rpm-find-leaves
 %{_bindir}/urpmf
