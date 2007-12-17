@@ -52,7 +52,6 @@ BuildRequires:	perl-Test-Pod
 BuildRequires:  rpmtools
 BuildRequires:  ash
 BuildRequires:  perl-Expect
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
 Conflicts:	man-pages-fr < 1.58.0-8mdk
 Conflicts:	rpmdrake < 3.19
