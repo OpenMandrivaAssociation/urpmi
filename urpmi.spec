@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	5.4
+%define version	5.5
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -37,6 +37,7 @@ Requires(post):	perl-URPM >= 3.06
 Requires(post):	gzip
 #- this one is require'd by urpmq, so it's not found [yet] by perl.req
 Requires:	perl-MDV-Packdrakeng >= 1.01
+Requires:	perl-Time-ZoneInfo >= 0.3.4
 Requires:	meta-task
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext
@@ -290,6 +291,7 @@ if (-e "/etc/urpmi/urpmi.cfg") {
 %{compat_perl_vendorlib}/urpm/main_loop.pm
 %{compat_perl_vendorlib}/urpm/md5sum.pm
 %{compat_perl_vendorlib}/urpm/media.pm
+%{compat_perl_vendorlib}/urpm/mirrors.pm
 %{compat_perl_vendorlib}/urpm/msg.pm
 %{compat_perl_vendorlib}/urpm/parallel.pm
 %{compat_perl_vendorlib}/urpm/prompt.pm
