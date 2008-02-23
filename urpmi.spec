@@ -29,7 +29,7 @@ Group:		%{group}
 License:	GPL
 Source0:	%{name}-%{version}.tar.bz2
 Summary:	Command-line software installation tools
-URL:		http://search.cpan.org/dist/%{name}/
+URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	%{req_webfetch} eject gnupg
 Requires(post):	perl-Locale-gettext >= 1.05-4mdv
 Requires(post):	perl-URPM >= 3.06
