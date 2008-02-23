@@ -53,7 +53,7 @@ BuildRequires:	perl-Test-Pod
 BuildRequires:	perl-XML-LibXML
 # for genhdlist in make test:
 BuildRequires:  rpmtools
-BuildRequires:  ash
+BuildRequires:  dash-static
 BuildRequires:  perl-Expect
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
