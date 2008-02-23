@@ -333,7 +333,6 @@ if (-e "/etc/urpmi/urpmi.cfg") {
 %files -n urpmi-recover
 %{_sbindir}/urpmi.recover
 %{_mandir}/man8/urpmi.recover*
-%config(noreplace) %_sys_macros_dir/urpmi.recover.macros
-%ghost %_sys_macros_dir/urpmi.recover.macros
+%ghost %config(noreplace) %_sys_macros_dir/urpmi.recover.macros
 
 
