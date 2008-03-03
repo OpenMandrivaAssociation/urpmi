@@ -284,6 +284,7 @@ if (-e "/etc/urpmi/urpmi.cfg") {
 %{compat_perl_vendorlib}/urpm/args.pm
 %{compat_perl_vendorlib}/urpm/bug_report.pm
 %{compat_perl_vendorlib}/urpm/cfg.pm
+%{compat_perl_vendorlib}/urpm/cdrom.pm
 %{compat_perl_vendorlib}/urpm/download.pm
 %{compat_perl_vendorlib}/urpm/get_pkgs.pm
 %{compat_perl_vendorlib}/urpm/install.pm
