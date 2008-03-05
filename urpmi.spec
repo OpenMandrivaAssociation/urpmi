@@ -38,6 +38,7 @@ Requires(post):	gzip
 Requires:	genhdlist2
 Requires:	perl-Time-ZoneInfo >= 0.3.4
 Requires:	meta-task
+Suggests:	perl-Hal-Cdroms
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext
 BuildRequires:	perl
