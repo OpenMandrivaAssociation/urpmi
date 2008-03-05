@@ -35,8 +35,7 @@ Requires(post):	perl-Locale-gettext >= 1.05-4mdv
 Requires(post):	perl-URPM >= 3.10
 # gzip is used in perl-URPM for synthesis and hdlist
 Requires(post):	gzip
-#- this one is require'd by urpmq, so it's not found [yet] by perl.req
-Requires:	perl-MDV-Packdrakeng >= 1.01
+Requires:	genhdlist2
 Requires:	perl-Time-ZoneInfo >= 0.3.4
 Requires:	meta-task
 BuildRequires:	bzip2-devel
