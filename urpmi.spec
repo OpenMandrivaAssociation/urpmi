@@ -13,7 +13,7 @@
 
 %define name	urpmi
 %define version	5.12
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
 
