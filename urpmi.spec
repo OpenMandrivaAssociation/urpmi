@@ -213,25 +213,38 @@ if [ "$1" = "0" ]; then
 fi
 exit 0
 
-%triggerprein -- urpmi < 4.10.6
+%triggerprein -- urpmi < 4.10.19
+# (it should be on perl-URPM < 3.03, because urpmi will be upgraded after perl-URPM)
+#
+# old urpmi+perl-URPM may have generated synthesis from hdlist.
+# we must regenerate synthesis again to have suggests in it.
 if [ -d /var/lib/urpmi ]; then
    cd /var/lib/urpmi
    for i in hdlist*.cz; do 
       if [ -e "synthesis.$i" ]; then
         echo "forcing synthesis.$i to be regenerated"	
         rm "synthesis.$i"
-	# needed to ensure synthesis has "suggests"
+	need_rebuild=1
       fi
    done
-fi
-
-%post -p /usr/bin/perl
-use urpm::media;
+   if [ -n "$need_rebuild" ]; then
+      # nb: this script is using old urpmi (ie urpmi <= 4.10.14)
+      # which still knows how to generate synthesis from hdlist
+      perl <<"EOF"
 if (-e "/etc/urpmi/urpmi.cfg") {
-    $urpm = new urpm;
-    urpm::media::read_config($urpm);
-    urpm::media::update_media($urpm, nolock => 1, nopubkey => 1);
+    require urpm;
+    $urpm = urpm->new;
+    if (eval { require urpm::media; 1 }) {
+	urpm::media::read_config($urpm);
+	urpm::media::update_media($urpm, nolock => 1, nopubkey => 1);
+    } else {
+	urpm::read_config($urpm);
+	urpm::update_media($urpm, nolock => 1, nopubkey => 1);
+    }
 }
+EOF
+   fi
+fi
 
 %if %{allow_gurpmi}
 %post -n gurpmi
