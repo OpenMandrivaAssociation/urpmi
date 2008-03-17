@@ -12,8 +12,8 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	5.12
-%define release	%mkrel 2
+%define version	5.13
+%define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
 
@@ -234,14 +234,97 @@ if [ -d /var/lib/urpmi ]; then
 if (-e "/etc/urpmi/urpmi.cfg") {
     require urpm;
     $urpm = urpm->new;
+
+    # use inlined media/media_info/file-deps.
+    # This ensures a second pass is not needed, 
+    # esp since old urpmi code doesn't rebuild synthesis when it should
+    foreach (<DATA>) {
+	chomp;
+        $urpm->{provides}{$_} = undef;
+    }   
+    # do not let $urpm->clean drop what we did above
+    undef *urpm::clean; *urpm::clean = sub {};
+
     if (eval { require urpm::media; 1 }) {
-	urpm::media::read_config($urpm);
-	urpm::media::update_media($urpm, nolock => 1, nopubkey => 1);
+        urpm::media::read_config($urpm);
+        urpm::media::update_media($urpm, nolock => 1, nopubkey => 1);
     } else {
-	urpm::read_config($urpm);
-	urpm::update_media($urpm, nolock => 1, nopubkey => 1);
+        urpm::read_config($urpm);
+        urpm::update_media($urpm, nolock => 1, nopubkey => 1);
     }
 }
+
+__DATA__
+/bin/awk
+/bin/bash
+/bin/cp
+/bin/csh
+/bin/egrep
+/bin/gawk
+/bin/grep
+/bin/ksh
+/bin/ln
+/bin/rm
+/bin/sed
+/bin/sh
+/bin/tcsh
+/etc/init.d
+/etc/rc.d/init.d
+/etc/sgml
+/etc/vservers
+/sbin/chkconfig
+/sbin/fuser
+/sbin/install-info
+/sbin/ip
+/sbin/ldconfig
+/sbin/service
+/usr/bin/ar
+/usr/bin/chattr
+/usr/bin/cmp
+/usr/bin/cw
+/usr/bin/env
+/usr/bin/expect
+/usr/bin/fontforge
+/usr/bin/gbx
+/usr/bin/gconftool-2
+/usr/bin/gtk-query-immodules-2.0
+/usr/bin/guile
+/usr/bin/irssi
+/usr/bin/ksh
+/usr/bin/ksi
+/usr/bin/ld
+/usr/bin/ldd
+/usr/bin/mktexlsr
+/usr/bin/moin-changePage
+/usr/bin/objdump
+/usr/bin/openssl
+/usr/bin/pbs_wish
+/usr/bin/perl
+/usr/bin/perperl
+/usr/bin/php
+/usr/bin/python
+/usr/bin/python2.5
+/usr/bin/ruby
+/usr/bin/tclsh
+/usr/bin/tr
+/usr/bin/wish
+/usr/i586-linux-uclibc/sbin/ldconfig
+/usr/lib/util-vserver
+/usr/lib/util-vserver/sigexec
+/usr/sbin/arping
+/usr/sbin/glibc-post-wrapper
+/usr/sbin/groupadd
+/usr/sbin/groupdel
+/usr/sbin/magicfilter
+/usr/sbin/update-alternatives
+/usr/sbin/update-ldetect-lst
+/usr/sbin/update-localtime
+/usr/sbin/useradd
+/usr/sbin/userdel
+/usr/share/haskell-src-exts/register.sh
+/usr/share/haskell-src-exts/unregister.sh
+/usr/share/hs-plugins/register.sh
+/usr/share/hs-plugins/unregister.sh
 EOF
    fi
 fi
