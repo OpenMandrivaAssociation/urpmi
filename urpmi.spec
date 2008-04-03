@@ -13,7 +13,7 @@
 
 %define name	urpmi
 %define version	5.19
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
 
@@ -242,13 +242,15 @@ if (-e "/etc/urpmi/urpmi.cfg") {
 	chomp;
         $urpm->{provides}{$_} = undef;
     }   
-    # do not let $urpm->clean drop what we did above
-    undef *urpm::clean; *urpm::clean = sub {};
 
     if (eval { require urpm::media; 1 }) {
+        # do not let $urpm->clean drop $urpm->{provides} we filled above
+    	undef *urpm::media::clean; *urpm::media::clean = sub {};
         urpm::media::read_config($urpm);
         urpm::media::update_media($urpm, nolock => 1, nopubkey => 1);
     } else {
+        # do not let clean() drop $urpm->{provides} we filled above
+    	undef *urpm::clean; *urpm::clean = sub {};
         urpm::read_config($urpm);
         urpm::update_media($urpm, nolock => 1, nopubkey => 1);
     }
