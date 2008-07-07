@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	5.20
+%define version	6.0
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -32,7 +32,7 @@ Summary:	Command-line software installation tools
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	%{req_webfetch} eject gnupg
 Requires(post):	perl-Locale-gettext >= 1.05-4mdv
-Requires(post):	perl-URPM >= 3.14
+Requires(post):	perl-URPM >= 3.18
 # gzip is used in perl-URPM for synthesis and hdlist
 Requires(post):	gzip
 Requires:	genhdlist2
@@ -396,6 +396,7 @@ fi
 %{compat_perl_vendorlib}/urpm/media.pm
 %{compat_perl_vendorlib}/urpm/mirrors.pm
 %{compat_perl_vendorlib}/urpm/msg.pm
+%{compat_perl_vendorlib}/urpm/orphans.pm
 %{compat_perl_vendorlib}/urpm/parallel.pm
 %{compat_perl_vendorlib}/urpm/prompt.pm
 %{compat_perl_vendorlib}/urpm/removable.pm
