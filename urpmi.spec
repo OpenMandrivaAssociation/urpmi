@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	6.0
+%define version	6.1
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -212,6 +212,11 @@ if [ "$1" = "0" ]; then
   rm -rf partial/* headers/* rpms/*
 fi
 exit 0
+
+%triggerprein -- urpmi = 6.0
+if [ -e /var/lib/urpmi/installed-through-deps.list ]; then
+   mv /var/lib/urpmi/installed-through-deps.list /var/lib/rpm/
+fi
 
 %triggerprein -- urpmi < 4.10.19
 # (it should be on perl-URPM < 3.03, because urpmi will be upgraded after perl-URPM)
