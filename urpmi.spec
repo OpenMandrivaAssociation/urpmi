@@ -48,6 +48,7 @@ BuildRequires:	perl-URPM >= 1.76
 BuildRequires:	perl-MDV-Packdrakeng
 BuildRequires:	perl-MDV-Distribconf
 BuildRequires:	perl-Locale-gettext >= 1.05-4mdv
+BuildRequires:  perl_checker
 # for make test:
 BuildRequires:	perl-Test-Pod
 BuildRequires:	perl-XML-LibXML
