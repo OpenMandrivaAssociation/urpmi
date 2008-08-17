@@ -185,7 +185,7 @@ cat > %buildroot%_datadir/mimelnk/application/x-urpmi.desktop << EOF
 [Desktop Entry]
 Type=MimeType
 Comment=urpmi file
-MimeType=application/x-urpmi
+MimeType=application/x-urpmi;
 Patterns=*.urpmi;
 EOF
 
