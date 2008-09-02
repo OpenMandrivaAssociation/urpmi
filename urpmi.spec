@@ -63,6 +63,7 @@ Conflicts:	man-pages-fr < 1.58.0-8mdk
 Conflicts:	rpmdrake < 3.19
 Conflicts:	curl < 7.13.0
 Conflicts:	wget < 1.10.2-6mdv2008.0
+Conflicts:	aria2 < 0.15.3
 # ugly workaround for upgrading 2007.0:
 Provides:	mandrake-mime = 0.5
 Obsoletes:	mandrake-mime < 0.5
