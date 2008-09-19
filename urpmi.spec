@@ -13,7 +13,7 @@
 
 %define name	urpmi
 %define version	6.13
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
 
@@ -63,7 +63,7 @@ Conflicts:	man-pages-fr < 1.58.0-8mdk
 Conflicts:	rpmdrake < 3.19
 Conflicts:	curl < 7.13.0
 Conflicts:	wget < 1.10.2-6mdv2008.0
-Conflicts:	aria2 < 0.15.3
+Conflicts:	aria2 < 0.15.3-0.20080918.1mdv
 # ugly workaround for upgrading 2007.0:
 Provides:	mandrake-mime = 0.5
 Obsoletes:	mandrake-mime < 0.5
