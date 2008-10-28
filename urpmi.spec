@@ -221,7 +221,7 @@ if [ -e /var/lib/urpmi/installed-through-deps.list ]; then
    mv /var/lib/urpmi/installed-through-deps.list /var/lib/rpm/
 fi
 
-%triggerprein -- urpmi < 6.18
+%triggerpostun -- urpmi < 6.18
 # (mdvbz#45058#c10)
 # fix packages wrongly marked installed-through-deps:
 # ensure all rpmsrate pkgs are non orphans
@@ -351,7 +351,7 @@ my $unrequested = urpm::orphans::unrequested_list($urpm);
 my @wrong = grep { delete $unrequested->{$_} } @l or exit;
 
 my $file = urpm::orphans::unrequested_list__file($urpm);
-print STDERR "removing from $file possibly required packages: @wrong\n";
+print STDERR "removing from $file possibly required packages (cf mdvbz#45058): @wrong\n";
 output_safe($file, 
 	    join('', sort map { "$_\n" } keys %$unrequested),
 	    ".old");
