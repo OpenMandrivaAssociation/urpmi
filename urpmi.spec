@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	6.17
+%define version	6.18
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -220,6 +220,143 @@ exit 0
 if [ -e /var/lib/urpmi/installed-through-deps.list ]; then
    mv /var/lib/urpmi/installed-through-deps.list /var/lib/rpm/
 fi
+
+%triggerprein -- urpmi < 6.18
+# (mdvbz#45058#c10)
+# fix packages wrongly marked installed-through-deps:
+# ensure all rpmsrate pkgs are non orphans
+# (the list of packages below is rpmsrate pkgs which are required by at least one pkg)
+#
+perl -Murpm::orphans -Murpm::util <<"EOF"
+my @l = qw(RealPlayer WindowMaker abiword acpi acpid acroread alsa-utils aoss
+apache-mod_perl apache-mod_php apache-mod_ssl apache-mod_suexec
+apache-mpm-prefork ardour ark armagetron aspell-af aspell-am aspell-az
+aspell-be aspell-bg aspell-bn aspell-br aspell-ca aspell-cs aspell-cy
+aspell-da aspell-de aspell-el aspell-en aspell-eo aspell-es aspell-et
+aspell-fa aspell-fi aspell-fo aspell-fr aspell-ga aspell-gd aspell-gl
+aspell-gv aspell-he aspell-hi aspell-hr aspell-hsb aspell-hu aspell-id
+aspell-is aspell-it aspell-ku aspell-lt aspell-lv aspell-mg aspell-mi
+aspell-mk aspell-mn aspell-mr aspell-ms aspell-mt aspell-nds aspell-nl
+aspell-nn aspell-no aspell-pa aspell-pl aspell-pt aspell-ro aspell-ru
+aspell-rw aspell-sc aspell-sk aspell-sl aspell-sv aspell-sw aspell-ta
+aspell-tl aspell-tr aspell-uk aspell-uz aspell-vi aspell-wa aspell-yi
+aspell-zu at aumix autoconf automake awesfx bc beagle-evolution beagle-gui
+bind bind-utils binutils bison bluez-gnome bluez-utils bootsplash brasero
+busybox cdrkit cdrkit-genisoimage chromium claws-mail crack-attack
+crack-attack-music crack-attack-sounds cvs dcraw desktop-common-data
+dhcp-client dia dkms-zaptel dmidecode dosfstools drakconf efax eject ekiga
+elisa emacs emacs-nox enscript eog epiphany epiphany-extensions evince
+evolution extremetuxracer f-spot file file-roller firefox flex flphoto
+fonts-ttf-arabic-arabeyes fonts-ttf-arabic-farsi fonts-ttf-arabic-kacst
+fonts-ttf-chinese fonts-ttf-dejavu fonts-ttf-japanese fonts-ttf-korean
+fonts-type1-greek fonts-type1-hebrew frozen-bubble gcalctool gcc gcc-c++
+gconf-editor gdb gdm gedit gettext-devel ghostscript-module-X giftrans gimp
+gnome-bluetooth gnome-games gnome-media gnome-system-monitor gnome-terminal
+gnome-volume-manager gnupg gnuplot gphoto2 groff grub gsynaptics gthumb gtkam
+gucharmap gurpmi hdparm hfsutils hylafax-client icewm icewm-light imagemagick
+info inkscape inn iproute2 iptables iputils isdn4k-utils iwlwifi-4965-ucode
+jabber java-1.6.0-openjdk-plugin java-1.6.0-sun java-1.6.0-sun-plugin jpilot
+kaddressbook kcalc kcharselect kde4-l10n-ar kde4-l10n-be kde4-l10n-bg
+kde4-l10n-ca kde4-l10n-cs kde4-l10n-csb kde4-l10n-da kde4-l10n-de kde4-l10n-el
+kde4-l10n-en_GB kde4-l10n-eo kde4-l10n-es kde4-l10n-et kde4-l10n-eu
+kde4-l10n-fa kde4-l10n-fi kde4-l10n-fr kde4-l10n-fy kde4-l10n-ga kde4-l10n-gl
+kde4-l10n-hi kde4-l10n-hu kde4-l10n-is kde4-l10n-it kde4-l10n-ja kde4-l10n-kk
+kde4-l10n-km kde4-l10n-ko kde4-l10n-ku kde4-l10n-lt kde4-l10n-lv kde4-l10n-mk
+kde4-l10n-ml kde4-l10n-nb kde4-l10n-nds kde4-l10n-ne kde4-l10n-nl kde4-l10n-nn
+kde4-l10n-pa kde4-l10n-pl kde4-l10n-pt kde4-l10n-pt_BR kde4-l10n-ro
+kde4-l10n-ru kde4-l10n-se kde4-l10n-sl kde4-l10n-sr kde4-l10n-sv kde4-l10n-ta
+kde4-l10n-th kde4-l10n-tr kde4-l10n-uk kde4-l10n-wa kde4-l10n-zh_CN
+kde4-l10n-zh_TW kde4-nsplugins kdeaccessibility4 kdebluetooth4 kdenetwork-krfb
+kdm kernel-server-latest kfloppy kino kipi-plugins kmail kmix knode knotes
+kolab kompozer konsole kopete korganizer kppp krfb kscd ksnapshot ksynaptics
+kterm laptop-mode-tools lbreakout2 lftp lib64alsa-plugins libtool lilo
+linuxwacom lm_sensors lmms locales lsb lsb-core lsof lynx m4 mailman make man
+man-pages mandriva-gfxboot-theme mandriva-release-Free mandriva-release-One
+mandriva-release-Powerpack mandriva-theme-Free mandriva-theme-Free-screensaver
+mandriva-theme-One mandriva-theme-One-screensaver mandriva-theme-Powerpack
+mandriva-theme-Powerpack-screensaver mlocate monitor-edid mousepad
+mozilla-thunderbird mtools myspell-af_ZA myspell-am_AM myspell-ar_AR
+myspell-az_AZ myspell-bg_BG myspell-bn_BN myspell-ca_ES myspell-cop_EG
+myspell-cs_CZ myspell-csb_CSB myspell-cy_GB myspell-da_DK myspell-de_AT
+myspell-de_CH myspell-de_DE myspell-el_GR myspell-en_AU myspell-en_CA
+myspell-en_GB myspell-en_NZ myspell-en_US myspell-en_ZA myspell-eo_EO
+myspell-es_ES myspell-es_MX myspell-et_EE myspell-eu_ES myspell-fa_FA
+myspell-fa_IR myspell-fj_FJ myspell-fo_FO myspell-fr_BE myspell-fr_FR
+myspell-fur_IT myspell-fy_NL myspell-ga_IE myspell-gd_GB myspell-gl_ES
+myspell-gsc_FR myspell-he_IL myspell-hi_IN myspell-hr_HR myspell-hu_HU
+myspell-hy_AM myspell-id_ID myspell-is_IS myspell-it_IT myspell-km_KH
+myspell-ku_TR myspell-la_LA myspell-lt_LT myspell-lv_LV myspell-mg_MG
+myspell-mi_NZ myspell-mn_MN myspell-mr_IN myspell-ms_MY myspell-nb_NO
+myspell-ne_NP myspell-nl_NL myspell-nn_NO myspell-nr_ZA myspell-ns_ZA
+myspell-ny_MW myspell-oc_FR myspell-or_OR myspell-pa_PA myspell-pl_PL
+myspell-pt_BR myspell-pt_PT myspell-qu_BO myspell-ro_RO myspell-ru_RU
+myspell-rw_RW myspell-sk_SK myspell-sl_SI myspell-ss_ZA myspell-st_ZA
+myspell-sv_SE myspell-sw_KE myspell-sw_TZ myspell-ta_TA myspell-tet_ID
+myspell-th_TH myspell-tl_PH myspell-tn_ZA myspell-ts_ZA myspell-uk_UA
+myspell-uz_UZ myspell-ve_ZA myspell-vi_VI myspell-xh_ZA myspell-zu_ZA
+nautilus-cd-burner nautilus-filesharing ndiswrapper netprofile nfs-utils
+nfs-utils-clients nmap nscd nspluginwrapper ntfs-3g ntfsprogs ntp nut-server
+okular openldap-servers openoffice.org-calc openoffice.org-filter-binfilter
+openoffice.org-impress openoffice.org-l10n-af openoffice.org-l10n-ar
+openoffice.org-l10n-bg openoffice.org-l10n-br openoffice.org-l10n-bs
+openoffice.org-l10n-ca openoffice.org-l10n-cs openoffice.org-l10n-cy
+openoffice.org-l10n-da openoffice.org-l10n-de openoffice.org-l10n-el
+openoffice.org-l10n-en_GB openoffice.org-l10n-es openoffice.org-l10n-et
+openoffice.org-l10n-eu openoffice.org-l10n-fi openoffice.org-l10n-fr
+openoffice.org-l10n-he openoffice.org-l10n-hi openoffice.org-l10n-hu
+openoffice.org-l10n-it openoffice.org-l10n-ja openoffice.org-l10n-ko
+openoffice.org-l10n-mk openoffice.org-l10n-nb openoffice.org-l10n-nl
+openoffice.org-l10n-nn openoffice.org-l10n-pl openoffice.org-l10n-pt
+openoffice.org-l10n-pt_BR openoffice.org-l10n-ru openoffice.org-l10n-sk
+openoffice.org-l10n-sl openoffice.org-l10n-sv openoffice.org-l10n-ta
+openoffice.org-l10n-tr openoffice.org-l10n-zh_CN openoffice.org-l10n-zh_TW
+openoffice.org-l10n-zu openoffice.org-style-crystal openoffice.org-style-tango
+openoffice.org-voikko openoffice.org-writer openoffice.org64-calc
+openoffice.org64-filter-binfilter openoffice.org64-gnome
+openoffice.org64-impress openoffice.org64-kde openoffice.org64-l10n-af
+openoffice.org64-l10n-ar openoffice.org64-l10n-bg openoffice.org64-l10n-br
+openoffice.org64-l10n-bs openoffice.org64-l10n-ca openoffice.org64-l10n-cs
+openoffice.org64-l10n-cy openoffice.org64-l10n-da openoffice.org64-l10n-de
+openoffice.org64-l10n-el openoffice.org64-l10n-en_GB openoffice.org64-l10n-es
+openoffice.org64-l10n-et openoffice.org64-l10n-eu openoffice.org64-l10n-fi
+openoffice.org64-l10n-fr openoffice.org64-l10n-he openoffice.org64-l10n-hi
+openoffice.org64-l10n-hu openoffice.org64-l10n-it openoffice.org64-l10n-ja
+openoffice.org64-l10n-ko openoffice.org64-l10n-mk openoffice.org64-l10n-nb
+openoffice.org64-l10n-nl openoffice.org64-l10n-nn openoffice.org64-l10n-pl
+openoffice.org64-l10n-pt openoffice.org64-l10n-pt_BR openoffice.org64-l10n-ru
+openoffice.org64-l10n-sk openoffice.org64-l10n-sl openoffice.org64-l10n-sv
+openoffice.org64-l10n-ta openoffice.org64-l10n-tr openoffice.org64-l10n-zh_CN
+openoffice.org64-l10n-zh_TW openoffice.org64-l10n-zu
+openoffice.org64-openclipart openoffice.org64-style-crystal
+openoffice.org64-style-tango openoffice.org64-voikko openoffice.org64-writer
+openssh-clients openssh-server patch pcmciautils perl perl-DBD-mysql
+perl-Term-ReadLine-Gnu perl-devel perl-libwww-perl pidgin pinot planner
+pm-utils postfix postgresql postgresql8.3-server ppp procmail proftpd psutils
+python python-django qt4-doc quota rcs rhythmbox rox rp-pppoe rpm-build
+rpmdrake rsync rxvt samba-client samba-server sane-frontends scim-anthy
+scim-bridge scim-hangul scim-pinyin scim-tables-am scim-tables-zh screen
+scribus sharutils smartmontools sound-scripts soundwrapper strace subversion
+sudo supertux swatch synaptics taipeifonts task-gnome-minimal task-kde4
+task-printing task-xfce-minimal tcpdump telnet-client-krb5 terminal
+thunar-thumbnailers tkinter tmpwatch totem-gstreamer tpctl traceroute tvtime
+uim-gtk unionfs-utils unzip urpmi urw-fonts userdrake valgrind vim-enhanced
+vinagre vino voikko-fi webmin wget wireless-tools words wpa_supplicant
+x11-driver-input x11-driver-video x11-font-bh-type1 xchat xchat-gnome
+xfce4-mixer xfce4-taskmanager xfprint xine-ui xlockmore xorg-x11-75dpi-fonts
+xsane xterm yp-tools ypbind ypserv zaptel-tools zip);
+
+my $urpm = urpm->new;
+my $unrequested = urpm::orphans::unrequested_list($urpm);
+
+my @wrong = grep { delete $unrequested->{$_} } @l or exit;
+
+my $file = urpm::orphans::unrequested_list__file($urpm);
+print STDERR "removing from $file possibly required packages: @wrong\n";
+output_safe($file, 
+	    join('', sort map { "$_\n" } keys %$unrequested),
+	    ".old");
+EOF
+true
 
 %triggerprein -- urpmi < 4.10.19
 # (it should be on perl-URPM < 3.03, because urpmi will be upgraded after perl-URPM)
