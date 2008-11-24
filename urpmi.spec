@@ -53,7 +53,7 @@ BuildRequires:  perl_checker
 # for make test:
 BuildRequires:	perl-Test-Pod
 BuildRequires:	perl-XML-LibXML
-BuildRequires:  glibc-devel
+BuildRequires:  glibc-static-devel
 # for genhdlist in make test:
 BuildRequires:  rpmtools
 BuildRequires:  perl-Expect
