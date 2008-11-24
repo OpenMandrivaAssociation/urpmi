@@ -53,9 +53,9 @@ BuildRequires:  perl_checker
 # for make test:
 BuildRequires:	perl-Test-Pod
 BuildRequires:	perl-XML-LibXML
+BuildRequires:  glibc-devel
 # for genhdlist in make test:
 BuildRequires:  rpmtools
-BuildRequires:  dash-static
 BuildRequires:  perl-Expect
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
