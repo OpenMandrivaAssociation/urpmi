@@ -20,7 +20,6 @@
 %define compat_perl_vendorlib %(perl -MConfig -e 'print "%{?perl_vendorlib:1}" ? "%{perl_vendorlib}" : "$Config{installvendorlib}"')
 %global allow_gurpmi %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? 1 : 0')
 %define req_webfetch %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "webfetch" : "curl wget"')
-%{?!_sys_macros_dir: %global _sys_macros_dir /etc/rpm}
 
 Name:		%{name}
 Version:	%{version}
@@ -122,18 +121,6 @@ Group:		%{group}
 urpmi-ldap is an extension module to urpmi to allow to specify
 urpmi configuration (notably media) in an LDAP directory.
 
-%package -n urpmi-recover
-Summary:	A tool to manage rpm repackaging and rollback
-Requires:	urpmi >= %{version}-%{release}
-Requires:	perl
-Requires:	perl(Date::Manip)
-Group:		%{group}
-
-%description -n urpmi-recover
-urpmi-recover is a tool that enables to set up a policy to keep trace of all
-packages that are uninstalled or upgraded on an rpm-based system, and to
-perform rollbacks, that is, to revert the system back to a previous state.
-
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -161,10 +148,6 @@ install -m 644 %{name}.bash-completion %{buildroot}%{_sysconfdir}/bash_completio
 
 # Don't install READMEs twice
 rm -f %{buildroot}%{compat_perl_vendorlib}/urpm/README*
-
-# For ghost file
-mkdir -p %{buildroot}%{_sys_macros_dir}
-touch %{buildroot}%{_sys_macros_dir}/urpmi.recover.macros
 
 # Desktop entry (only used to register new MIME type handler, so no icon etc.)
 %if %{allow_gurpmi}
@@ -605,10 +588,3 @@ fi
 %files -n urpmi-ldap
 %doc urpmi.schema
 %{compat_perl_vendorlib}/urpm/ldap.pm
-
-%files -n urpmi-recover
-%{_sbindir}/urpmi.recover
-%{_mandir}/man8/urpmi.recover*
-%ghost %config(noreplace) %_sys_macros_dir/urpmi.recover.macros
-
-
