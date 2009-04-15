@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	6.25.1
+%define version	6.25.2
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -40,7 +40,7 @@ Requires:	meta-task
 Suggests:	perl-Hal-Cdroms
 Suggests:	aria2
 BuildRequires:	bzip2-devel
-BuildRequires:	gettext
+BuildRequires:	gettext intltool
 BuildRequires:	perl
 BuildRequires:	perl-File-Slurp
 BuildRequires:	perl(Net::LDAP)
