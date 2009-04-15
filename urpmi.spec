@@ -152,17 +152,7 @@ rm -f %{buildroot}%{compat_perl_vendorlib}/urpm/README*
 # Desktop entry (only used to register new MIME type handler, so no icon etc.)
 %if %{allow_gurpmi}
 mkdir -p %buildroot%_datadir/applications
-cat > %buildroot%_datadir/applications/mandriva-gurpmi.desktop << EOF
-[Desktop Entry]
-Name=Software Installer
-Comment=Graphical front end to install RPM files
-Exec=%{_bindir}/gurpmi %%F
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=GTK;X-MandrivaLinux-.hidden;
-MimeType=application/x-rpm;application/x-urpmi;
-EOF
+cp -a gurpmi.desktop %buildroot%_datadir/applications/mandriva-gurpmi.desktop
 %endif
 
 mkdir -p %buildroot%_datadir/mimelnk/application
