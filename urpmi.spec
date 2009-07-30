@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	6.25.5
+%define version	6.26
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -25,13 +25,13 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 Group:		%{group}
-License:	GPL
+License:	GPLv2+
 Source0:	%{name}-%{version}.tar.bz2
 Summary:	Command-line software installation tools
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	%{req_webfetch} eject gnupg
 Requires(post):	perl-Locale-gettext >= 1.05-4mdv
-Requires(post):	perl-URPM >= 3.26
+Requires(post):	perl-URPM >= 3.31
 # gzip is used in perl-URPM for synthesis and hdlist
 Requires(post):	gzip
 Requires:	genhdlist2
@@ -120,6 +120,19 @@ Group:		%{group}
 %description -n urpmi-ldap
 urpmi-ldap is an extension module to urpmi to allow to specify
 urpmi configuration (notably media) in an LDAP directory.
+
+%package -n urpmi-dudf
+Summary:	Extension to urpmi to handle dudf generation and upload
+Requires:	urpmi >= %{version}-%{release}
+Requires:	perl-XML-Writer
+Requires:	perl-Data-UUID
+Requires:	perl-IO-Compress
+Group:		%{group}
+
+%description -n urpmi-dudf
+urpmi-dudf is an extension module to urpmi to allow urpmi to generate
+and upload dudf error files. This is a part of the Europeen Mancoosi project,
+a project to enhance Linux Package Management. See http://www.mancoosi.org/
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -578,3 +591,6 @@ fi
 %files -n urpmi-ldap
 %doc urpmi.schema
 %{compat_perl_vendorlib}/urpm/ldap.pm
+
+%files -n urpmi-dudf
+%{compat_perl_vendorlib}/urpm/dudf.pm
