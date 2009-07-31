@@ -124,9 +124,9 @@ urpmi configuration (notably media) in an LDAP directory.
 %package -n urpmi-dudf
 Summary:	Extension to urpmi to handle dudf generation and upload
 Requires:	urpmi >= %{version}-%{release}
-Requires:	perl-XML-Writer
-Requires:	perl-Data-UUID
-Requires:	perl-IO-Compress
+BuildRequires:	perl-XML-Writer
+BuildRequires:	perl-Data-UUID
+BuildRequires:	perl-IO-Compress
 Group:		%{group}
 
 %description -n urpmi-dudf
