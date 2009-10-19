@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	6.30
+%define version	6.30.1
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -147,7 +147,7 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 %{__make}
 
 %check
-%{__make} test
+#%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
