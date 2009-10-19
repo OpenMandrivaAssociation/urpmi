@@ -147,7 +147,7 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 %{__make}
 
 %check
-#%{__make} test
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
