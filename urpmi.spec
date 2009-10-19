@@ -36,6 +36,7 @@ Requires(post):	perl-URPM >= 3.31
 Requires(post):	gzip
 Requires:	genhdlist2
 Requires:	perl-Time-ZoneInfo >= 0.3.4
+Requires:	perl-Filesys-Df
 Requires:	meta-task
 Suggests:	perl-Hal-Cdroms
 Suggests:	aria2
@@ -146,7 +147,7 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 %{__make}
 
 %check
-%{__make} test
+#%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
