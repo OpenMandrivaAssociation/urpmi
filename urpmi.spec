@@ -12,7 +12,7 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	6.34
+%define version	6.35
 %define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -54,6 +54,7 @@ BuildRequires:  perl_checker
 BuildRequires:	perl-Test-Pod
 BuildRequires:	perl-XML-LibXML
 BuildRequires:  glibc-static-devel
+BuildRequires:  perl-Net-Server
 # for genhdlist in make test:
 BuildRequires:  rpmtools
 BuildRequires:  perl-Expect
