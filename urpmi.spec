@@ -11,8 +11,8 @@
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define name	urpmi
-%define version	6.38
-%define release	%mkrel 2
+%define version	6.39
+%define release	%mkrel 1
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
 
@@ -526,6 +526,7 @@ fi
 %{_sbindir}/urpmi.addmedia
 %{_sbindir}/urpmi.removemedia
 %{_sbindir}/urpmi.update
+%{_sbindir}/urpmi.recover
 %{_mandir}/man3/urpm*
 %{_mandir}/man5/urpm*
 %{_mandir}/man5/proxy*
@@ -536,6 +537,7 @@ fi
 %{_mandir}/man8/urpmi.8*
 %{_mandir}/man8/urpmi.addmedia*
 %{_mandir}/man8/urpmi.removemedia*
+%{_mandir}/man8/urpmi.recover*
 %{_mandir}/man8/urpmi.update*
 %{_mandir}/man8/urpmihowto*
 %dir %{compat_perl_vendorlib}/urpm
@@ -563,7 +565,7 @@ fi
 %{compat_perl_vendorlib}/urpm/util.pm
 %{compat_perl_vendorlib}/urpm/xml_info.pm
 %{compat_perl_vendorlib}/urpm/xml_info_pkg.pm
-%doc NEWS
+%doc NEWS README.zeroconf urpmi-repository-http.service
 
 %if %{allow_gurpmi}
 %files -n gurpmi
