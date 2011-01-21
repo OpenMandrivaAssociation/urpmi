@@ -10,19 +10,15 @@
 %{?!mkrel: %define mkrel(c:) %{-c: 0.%{-c*}.}%{1}%{?distsuffix:.%distsuffix}%{?distversion}}
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
-%define name	urpmi
-%define version	6.42
-%define release	%mkrel 1
-
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
 
 %define compat_perl_vendorlib %(perl -MConfig -e 'print "%{?perl_vendorlib:1}" ? "%{perl_vendorlib}" : "$Config{installvendorlib}"')
 %global allow_gurpmi %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? 1 : 0')
 %define req_webfetch %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "webfetch" : "curl wget"')
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		urpmi
+Version:	6.43
+Release:	%mkrel 1
 Group:		%{group}
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
@@ -30,7 +26,7 @@ Summary:	Command-line software installation tools
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	%{req_webfetch} eject gnupg
 Requires(post):	perl-Locale-gettext >= 1.05-4mdv
-Requires(post):	perl-URPM >= 3.31
+Requires(post):	perl-URPM >= 4.8
 # gzip is used in perl-URPM for synthesis and hdlist
 Requires(post):	gzip
 Requires:	genhdlist2
