@@ -1,10 +1,3 @@
-################################################################## #
-#
-# !!!!!!!! WARNING => THIS HAS TO BE EDITED IN THE CVS !!!!!!!!!!!
-#
-#
-##################################################################
-
 # local RH-friendly definition of %mkrel, so we can assume it works and drop 
 # other release hacking macros
 %{?!mkrel: %define mkrel(c:) %{-c: 0.%{-c*}.}%{1}%{?distsuffix:.%distsuffix}%{?distversion}}
@@ -17,7 +10,7 @@
 %define req_webfetch %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "webfetch" : "curl wget"')
 
 Name:		urpmi
-Version:	6.48
+Version:	6.49
 Release:	%mkrel 1
 Group:		%{group}
 License:	GPLv2+
