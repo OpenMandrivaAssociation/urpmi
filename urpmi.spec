@@ -11,7 +11,7 @@
 
 Name:		urpmi
 Version:	6.51
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		%{group}
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
