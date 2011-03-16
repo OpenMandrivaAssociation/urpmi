@@ -9,12 +9,12 @@ Source0:	%{name}-%{version}.tar.xz
 Summary:	Command-line software installation tools
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch eject gnupg
-Requires(post):	perl-Locale-gettext >= 1.05-4mdv
+Requires(post):	perl-Locale-gettext
 Requires(post):	perl-URPM >= 4.8
 # gzip is used in perl-URPM for synthesis and hdlist
 Requires(post):	gzip
 Requires:	genhdlist2
-Requires:	perl-Time-ZoneInfo >= 0.3.4
+Requires:	perl-Time-ZoneInfo
 Requires:	perl-Filesys-Df
 Requires:	meta-task
 Suggests:	perl-Hal-Cdroms
@@ -24,10 +24,10 @@ BuildRequires:	gettext intltool
 BuildRequires:	perl
 BuildRequires:	perl-File-Slurp
 BuildRequires:	perl(Net::LDAP)
-BuildRequires:	perl-URPM >= 1.76
+BuildRequires:	perl-URPM
 BuildRequires:	perl-MDV-Packdrakeng
 BuildRequires:	perl-MDV-Distribconf
-BuildRequires:	perl-Locale-gettext >= 1.05-4mdv
+BuildRequires:	perl-Locale-gettext
 BuildRequires:  perl_checker
 # for make test:
 BuildRequires:	perl-Test-Pod
@@ -39,14 +39,6 @@ BuildRequires:  rpmtools
 BuildRequires:  perl-Expect
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
-Conflicts:	man-pages-fr < 1.58.0-8mdk
-Conflicts:	rpmdrake < 3.19
-Conflicts:	curl < 7.13.0
-Conflicts:	wget < 1.10.2-6mdv2008.0
-Conflicts:	aria2 < 0.15.3-0.20080918.1mdv
-# ugly workaround for upgrading 2007.0:
-Provides:	mandrake-mime = 0.5
-Obsoletes:	mandrake-mime < 0.5
 
 %description
 urpmi is Mandriva Linux's console-based software installation tool. You can
