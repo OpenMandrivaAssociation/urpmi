@@ -1,6 +1,5 @@
 # local RH-friendly definition of %mkrel, so we can assume it works and drop 
 # other release hacking macros
-%{?!mkrel: %define mkrel(c:) %{-c: 0.%{-c*}.}%{1}%{?distsuffix:.%distsuffix}%{?distversion}}
 %{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
 
 %define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
@@ -11,7 +10,7 @@
 
 Name:		urpmi
 Version:	6.52
-Release:	%mkrel 2
+Release:	1
 Group:		%{group}
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
