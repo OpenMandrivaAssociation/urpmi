@@ -191,11 +191,6 @@ if [ "$1" = "0" ]; then
 fi
 exit 0
 
-%triggerprein -- urpmi = 6.0
-if [ -e /var/lib/urpmi/installed-through-deps.list ]; then
-   mv /var/lib/urpmi/installed-through-deps.list /var/lib/rpm/
-fi
-
 %triggerpostun -- urpmi < 6.18
 # (mdvbz#45058#c10)
 # fix packages wrongly marked installed-through-deps:
