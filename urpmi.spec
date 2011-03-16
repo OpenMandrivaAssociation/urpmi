@@ -10,7 +10,7 @@
 %define req_webfetch %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "webfetch" : "curl wget"')
 
 Name:		urpmi
-Version:	6.51
+Version:	6.52
 Release:	%mkrel 2
 Group:		%{group}
 License:	GPLv2+
