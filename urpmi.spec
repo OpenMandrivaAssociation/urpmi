@@ -1,22 +1,14 @@
-# local RH-friendly definition of %mkrel, so we can assume it works and drop 
-# other release hacking macros
-%{?!makeinstall_std: %define makeinstall_std() make DESTDIR=%{?buildroot:%{buildroot}} install}
-
-%define group %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "System/Configuration/Packaging" : "System Environment/Base"')
-
-%define compat_perl_vendorlib %(perl -MConfig -e 'print "%{?perl_vendorlib:1}" ? "%{perl_vendorlib}" : "$Config{installvendorlib}"')
-%global allow_gurpmi %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? 1 : 0')
-%define req_webfetch %(perl -e 'print "%_vendor" =~ /\\bmandr/i ? "webfetch" : "curl wget"')
+%bcond_without	gurpmi
 
 Name:		urpmi
 Version:	6.52
 Release:	1
-Group:		%{group}
+Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Summary:	Command-line software installation tools
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
-Requires:	%{req_webfetch} eject gnupg
+Requires:	webfetch eject gnupg
 Requires(post):	perl-Locale-gettext >= 1.05-4mdv
 Requires(post):	perl-URPM >= 4.8
 # gzip is used in perl-URPM for synthesis and hdlist
@@ -66,7 +58,7 @@ install -- and it's capable of obtaining packages from a variety of media,
 including the Mandriva Linux installation CD-ROMs, your local hard disk,
 and remote sources such as web or FTP sites.
 
-%if %{allow_gurpmi}
+%if %{with gurpmi}
 %package -n gurpmi
 Summary:	User mode rpm GUI install
 Group:		%{group}
@@ -128,7 +120,7 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor \
-%if %{allow_gurpmi}
+%if %{with gurpmi}
     --install-gui \
 %endif
     --install-po
@@ -138,8 +130,7 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 %{__make} test
 
 %install
-%{__rm} -rf %{buildroot}
-%{makeinstall_std}
+%makeinstall_std
 
 # bash completion
 install -d -m 755 %{buildroot}%{_sysconfdir}/bash_completion.d
@@ -149,10 +140,10 @@ install -m 644 %{name}.bash-completion %{buildroot}%{_sysconfdir}/bash_completio
 ( cd %{buildroot}%{_bindir} ; ln -s -f rpm-find-leaves urpmi_rpm-find-leaves )
 
 # Don't install READMEs twice
-rm -f %{buildroot}%{compat_perl_vendorlib}/urpm/README*
+rm -f %{buildroot}%{perl_vendorlib}/urpm/README*
 
 # Desktop entry (only used to register new MIME type handler, so no icon etc.)
-%if %{allow_gurpmi}
+%if %{with gurpmi}
 mkdir -p %buildroot%_datadir/applications
 cp -a gurpmi.desktop %buildroot%_datadir/applications/mandriva-gurpmi.desktop
 %endif
@@ -364,34 +355,34 @@ true
 %{_mandir}/man8/urpmi.recover*
 %{_mandir}/man8/urpmi.update*
 %{_mandir}/man8/urpmihowto*
-%dir %{compat_perl_vendorlib}/urpm
-%{compat_perl_vendorlib}/urpm.pm
-%{compat_perl_vendorlib}/urpm/args.pm
-%{compat_perl_vendorlib}/urpm/bug_report.pm
-%{compat_perl_vendorlib}/urpm/cfg.pm
-%{compat_perl_vendorlib}/urpm/cdrom.pm
-%{compat_perl_vendorlib}/urpm/download.pm
-%{compat_perl_vendorlib}/urpm/get_pkgs.pm
-%{compat_perl_vendorlib}/urpm/install.pm
-%{compat_perl_vendorlib}/urpm/lock.pm
-%{compat_perl_vendorlib}/urpm/main_loop.pm
-%{compat_perl_vendorlib}/urpm/md5sum.pm
-%{compat_perl_vendorlib}/urpm/media.pm
-%{compat_perl_vendorlib}/urpm/mirrors.pm
-%{compat_perl_vendorlib}/urpm/msg.pm
-%{compat_perl_vendorlib}/urpm/orphans.pm
-%{compat_perl_vendorlib}/urpm/parallel.pm
-%{compat_perl_vendorlib}/urpm/prompt.pm
-%{compat_perl_vendorlib}/urpm/removable.pm
-%{compat_perl_vendorlib}/urpm/select.pm
-%{compat_perl_vendorlib}/urpm/signature.pm
-%{compat_perl_vendorlib}/urpm/sys.pm
-%{compat_perl_vendorlib}/urpm/util.pm
-%{compat_perl_vendorlib}/urpm/xml_info.pm
-%{compat_perl_vendorlib}/urpm/xml_info_pkg.pm
+%dir %{perl_vendorlib}/urpm
+%{perl_vendorlib}/urpm.pm
+%{perl_vendorlib}/urpm/args.pm
+%{perl_vendorlib}/urpm/bug_report.pm
+%{perl_vendorlib}/urpm/cfg.pm
+%{perl_vendorlib}/urpm/cdrom.pm
+%{perl_vendorlib}/urpm/download.pm
+%{perl_vendorlib}/urpm/get_pkgs.pm
+%{perl_vendorlib}/urpm/install.pm
+%{perl_vendorlib}/urpm/lock.pm
+%{perl_vendorlib}/urpm/main_loop.pm
+%{perl_vendorlib}/urpm/md5sum.pm
+%{perl_vendorlib}/urpm/media.pm
+%{perl_vendorlib}/urpm/mirrors.pm
+%{perl_vendorlib}/urpm/msg.pm
+%{perl_vendorlib}/urpm/orphans.pm
+%{perl_vendorlib}/urpm/parallel.pm
+%{perl_vendorlib}/urpm/prompt.pm
+%{perl_vendorlib}/urpm/removable.pm
+%{perl_vendorlib}/urpm/select.pm
+%{perl_vendorlib}/urpm/signature.pm
+%{perl_vendorlib}/urpm/sys.pm
+%{perl_vendorlib}/urpm/util.pm
+%{perl_vendorlib}/urpm/xml_info.pm
+%{perl_vendorlib}/urpm/xml_info_pkg.pm
 %doc NEWS README.zeroconf urpmi-repository-http.service
 
-%if %{allow_gurpmi}
+%if %{with gurpmi}
 %files -n gurpmi
 %defattr(-,root,root)
 %{_bindir}/gurpmi
@@ -400,24 +391,24 @@ true
 %{_datadir}/applications/mandriva-gurpmi.desktop
 %{_datadir}/mimelnk/application/x-urpmi.desktop
 %{_datadir}/mime/packages/gurpmi.xml
-%{compat_perl_vendorlib}/gurpmi.pm
+%{perl_vendorlib}/gurpmi.pm
 %endif
 
 %files -n urpmi-parallel-ka-run
 %defattr(-,root,root)
 %doc urpm/README.ka-run
-%dir %{compat_perl_vendorlib}/urpm
-%{compat_perl_vendorlib}/urpm/parallel_ka_run.pm
+%dir %{perl_vendorlib}/urpm
+%{perl_vendorlib}/urpm/parallel_ka_run.pm
 
 %files -n urpmi-parallel-ssh
 %defattr(-,root,root)
 %doc urpm/README.ssh
-%dir %{compat_perl_vendorlib}/urpm
-%{compat_perl_vendorlib}/urpm/parallel_ssh.pm
+%dir %{perl_vendorlib}/urpm
+%{perl_vendorlib}/urpm/parallel_ssh.pm
 
 %files -n urpmi-ldap
 %doc urpmi.schema
-%{compat_perl_vendorlib}/urpm/ldap.pm
+%{perl_vendorlib}/urpm/ldap.pm
 
 %files -n urpmi-dudf
-%{compat_perl_vendorlib}/urpm/dudf.pm
+%{perl_vendorlib}/urpm/dudf.pm
