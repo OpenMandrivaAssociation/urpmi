@@ -477,22 +477,6 @@ EOF
    fi
 fi
 
-%if %{allow_gurpmi}
-%if %mdkversion < 200900
-%post -n gurpmi
-%{update_menus}
-%{update_desktop_database}
-%{update_mime_database}
-%endif
-
-%if %mdkversion < 200900
-%postun -n gurpmi
-%{clean_menus}
-%{clean_desktop_database}
-%{clean_mime_database}
-%endif
-%endif
-
 %files -f %{name}.lang
 %defattr(-,root,root)
 %dir /etc/urpmi
