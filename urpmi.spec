@@ -37,7 +37,6 @@ BuildRequires:  perl-Net-Server
 # for genhdlist in make test:
 BuildRequires:  rpmtools
 BuildRequires:  perl-Expect
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
 
 %description
@@ -51,64 +50,59 @@ including the Mandriva Linux installation CD-ROMs, your local hard disk,
 and remote sources such as web or FTP sites.
 
 %if %{with gurpmi}
-%package -n gurpmi
+%package -n	gurpmi
 Summary:	User mode rpm GUI install
-Group:		%{group}
-Requires:	urpmi >= %{version}-%{release}
+Requires:	urpmi >= %{EVRD}
 Requires:	usermode usermode-consoleonly
 Obsoletes:	grpmi
 Provides:	grpmi
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
-%description -n gurpmi
+%description -n	gurpmi
 gurpmi is a graphical front-end to urpmi.
 %endif
 
-%package -n urpmi-parallel-ka-run
+%package	parallel-ka-run
 Summary:	Parallel extensions to urpmi using ka-run
-Requires:	urpmi >= %{version}-%{release}
+Requires:	urpmi >= %{EVRD}
 Requires:	parallel-tools
-Group:		%{group}
 
-%description -n urpmi-parallel-ka-run
+%description	parallel-ka-run
 urpmi-parallel-ka-run is an extension module to urpmi for handling
 distributed installation using ka-run or Taktuk tools.
 
-%package -n urpmi-parallel-ssh
+%package	parallel-ssh
 Summary:	Parallel extensions to urpmi using ssh and scp
-Requires:	urpmi >= %{version}-%{release} openssh-clients perl
-Group:		%{group}
+Requires:	urpmi >= %{EVRD} openssh-clients perl
 
-%description -n urpmi-parallel-ssh
+%description	parallel-ssh
 urpmi-parallel-ssh is an extension module to urpmi for handling
 distributed installation using ssh and scp tools.
 
-%package -n urpmi-ldap
+%package	ldap
 Summary:	Extension to urpmi to specify media configuration via LDAP
-Requires:	urpmi >= %{version}-%{release}
+Requires:	urpmi >= %{EVRD}
 Requires:	openldap-clients
-Group:		%{group}
 
-%description -n urpmi-ldap
+%description	ldap
 urpmi-ldap is an extension module to urpmi to allow to specify
 urpmi configuration (notably media) in an LDAP directory.
 
-%package -n urpmi-dudf
+%package	dudf
 Summary:	Extension to urpmi to handle dudf generation and upload
-Requires:	urpmi >= %{version}-%{release}
+Requires:	urpmi >= %{EVRD}
 BuildRequires:	perl-XML-Writer
 BuildRequires:	perl-Data-UUID
 BuildRequires:	perl-IO-Compress
-Group:		%{group}
 
-%description -n urpmi-dudf
+%description	dudf
 urpmi-dudf is an extension module to urpmi to allow urpmi to generate
 and upload dudf error files. This is a part of the Europeen Mancoosi project,
 a project to enhance Linux Package Management. See http://www.mancoosi.org/
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor \
@@ -136,12 +130,12 @@ rm -f %{buildroot}%{perl_vendorlib}/urpm/README*
 
 # Desktop entry (only used to register new MIME type handler, so no icon etc.)
 %if %{with gurpmi}
-mkdir -p %buildroot%_datadir/applications
-cp -a gurpmi.desktop %buildroot%_datadir/applications/mandriva-gurpmi.desktop
+mkdir -p %{buildroot}%{_datadir}/applications
+cp -a gurpmi.desktop %{buildroot}%{_datadir}/applications/mandriva-gurpmi.desktop
 %endif
 
-mkdir -p %buildroot%_datadir/mimelnk/application
-cat > %buildroot%_datadir/mimelnk/application/x-urpmi.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/mimelnk/application
+cat > %{buildroot}%{_datadir}/mimelnk/application/x-urpmi.desktop << EOF
 [Desktop Entry]
 Type=MimeType
 Comment=urpmi file
@@ -149,8 +143,8 @@ MimeType=application/x-urpmi;
 Patterns=*.urpmi;
 EOF
 
-mkdir -p %buildroot%_datadir/mime/packages
-cat > %buildroot%_datadir/mime/packages/gurpmi.xml << EOF
+mkdir -p %{buildroot}%{_datadir}/mime/packages
+cat > %{buildroot}%{_datadir}/mime/packages/gurpmi.xml << EOF
 <?xml version="1.0"?>
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type type="application/x-urpmi">
@@ -312,7 +306,7 @@ EOF
 true
 
 %files -f %{name}.lang
-%defattr(-,root,root)
+%doc NEWS README.zeroconf urpmi-repository-http.service
 %dir /etc/urpmi
 %dir /var/lib/urpmi
 %dir /var/cache/urpmi
@@ -372,11 +366,9 @@ true
 %{perl_vendorlib}/urpm/util.pm
 %{perl_vendorlib}/urpm/xml_info.pm
 %{perl_vendorlib}/urpm/xml_info_pkg.pm
-%doc NEWS README.zeroconf urpmi-repository-http.service
 
 %if %{with gurpmi}
 %files -n gurpmi
-%defattr(-,root,root)
 %{_bindir}/gurpmi
 %{_bindir}/gurpmi2
 %{_sbindir}/gurpmi2
@@ -386,21 +378,19 @@ true
 %{perl_vendorlib}/gurpmi.pm
 %endif
 
-%files -n urpmi-parallel-ka-run
-%defattr(-,root,root)
+%files parallel-ka-run
 %doc urpm/README.ka-run
 %dir %{perl_vendorlib}/urpm
 %{perl_vendorlib}/urpm/parallel_ka_run.pm
 
-%files -n urpmi-parallel-ssh
-%defattr(-,root,root)
+%files parallel-ssh
 %doc urpm/README.ssh
 %dir %{perl_vendorlib}/urpm
 %{perl_vendorlib}/urpm/parallel_ssh.pm
 
-%files -n urpmi-ldap
+%files ldap
 %doc urpmi.schema
 %{perl_vendorlib}/urpm/ldap.pm
 
-%files -n urpmi-dudf
+%files dudf
 %{perl_vendorlib}/urpm/dudf.pm
