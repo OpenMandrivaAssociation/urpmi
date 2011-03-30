@@ -156,9 +156,6 @@ EOF
 
 %find_lang %{name}
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %preun
 if [ "$1" = "0" ]; then
   cd /var/lib/urpmi
