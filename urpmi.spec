@@ -337,6 +337,7 @@ true
 %{_mandir}/man8/urpmi.removemedia*
 %{_mandir}/man8/urpmi.recover*
 %{_mandir}/man8/urpmi.update*
+%{_mandir}/man8/urpmi-dudf
 %{_mandir}/man8/urpmihowto*
 %dir %{perl_vendorlib}/urpm
 %{perl_vendorlib}/urpm.pm
