@@ -2,7 +2,7 @@
 
 Name:		urpmi
 Version:	6.58
-Release:	1
+Release:	2
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
