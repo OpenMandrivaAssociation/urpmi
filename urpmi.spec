@@ -92,6 +92,7 @@ urpmi configuration (notably media) in an LDAP directory.
 %package	dudf
 Summary:	Extension to urpmi to handle dudf generation and upload
 Requires:	urpmi >= %{EVRD}
+Requires:	perl-dudfrpmstatus
 BuildRequires:	perl-XML-Writer
 BuildRequires:	perl-Data-UUID
 BuildRequires:	perl-IO-Compress
