@@ -392,5 +392,6 @@ true
 %{perl_vendorlib}/urpm/ldap.pm
 
 %files dudf
+%doc urpm/README.dudf
 %{perl_vendorlib}/urpm/dudf.pm
 %{_mandir}/man8/urpmi-dudf.8*
