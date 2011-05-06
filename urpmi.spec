@@ -27,6 +27,7 @@ BuildRequires:	perl(Net::LDAP)
 BuildRequires:	perl-URPM
 BuildRequires:	perl-MDV-Packdrakeng
 BuildRequires:	perl-MDV-Distribconf
+BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl-Locale-gettext
 BuildRequires:  perl_checker
 # for make test:
