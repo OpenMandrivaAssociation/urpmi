@@ -137,15 +137,6 @@ mkdir -p %{buildroot}%{_datadir}/applications
 cp -a gurpmi.desktop %{buildroot}%{_datadir}/applications/mandriva-gurpmi.desktop
 %endif
 
-mkdir -p %{buildroot}%{_datadir}/mimelnk/application
-cat > %{buildroot}%{_datadir}/mimelnk/application/x-urpmi.desktop << EOF
-[Desktop Entry]
-Type=MimeType
-Comment=urpmi file
-MimeType=application/x-urpmi;
-Patterns=*.urpmi;
-EOF
-
 mkdir -p %{buildroot}%{_datadir}/mime/packages
 cat > %{buildroot}%{_datadir}/mime/packages/gurpmi.xml << EOF
 <?xml version="1.0"?>
@@ -373,7 +364,6 @@ true
 %{_bindir}/gurpmi2
 %{_sbindir}/gurpmi2
 %{_datadir}/applications/mandriva-gurpmi.desktop
-%{_datadir}/mimelnk/application/x-urpmi.desktop
 %{_datadir}/mime/packages/gurpmi.xml
 %{perl_vendorlib}/gurpmi.pm
 %endif
