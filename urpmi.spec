@@ -1,7 +1,7 @@
 %bcond_without	gurpmi
 
 Name:		urpmi
-Version:	6.62
+Version:	6.63
 Release:	1
 Group:		System/Configuration/Packaging
 License:	GPLv2+
