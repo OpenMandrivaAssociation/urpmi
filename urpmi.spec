@@ -122,11 +122,10 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 %makeinstall_std
 
 # bash completion
-install -d -m 755 %{buildroot}%{_sysconfdir}/bash_completion.d
-install -m 644 %{name}.bash-completion %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
+install -m644 %{name}.bash-completion -D %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 
 # rpm-find-leaves is invoked by this name in rpmdrake
-( cd %{buildroot}%{_bindir} ; ln -s -f rpm-find-leaves urpmi_rpm-find-leaves )
+ln -sf rpm-find-leaves %{buildroot}%{_bindir}/urpmi_rpm-find-leaves
 
 # Don't install READMEs twice
 rm -f %{buildroot}%{perl_vendorlib}/urpm/README*
