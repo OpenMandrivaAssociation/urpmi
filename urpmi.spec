@@ -2,7 +2,7 @@
 
 Name:		urpmi
 Version:	6.65
-Release:	1
+Release:	2
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
@@ -10,7 +10,7 @@ Summary:	Command-line software installation tools
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch eject gnupg
 Requires(post):	perl-Locale-gettext
-Requires(post):	perl-URPM >= 4.8
+Requires(post):	perl-URPM >= 4.33
 # gzip is used in perl-URPM for synthesis and hdlist
 Requires(post):	gzip
 Requires:	genhdlist2
