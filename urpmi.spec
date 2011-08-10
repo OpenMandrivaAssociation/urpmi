@@ -2,10 +2,11 @@
 
 Name:		urpmi
 Version:	6.68
-Release:	1
+Release:	2
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
+Patch0:		urpmi.rsync.patch
 Summary:	Command-line software installation tools
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch eject gnupg
@@ -106,6 +107,9 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 
 %prep
 %setup -q
+
+# urpmi.rsync.patch
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor \
