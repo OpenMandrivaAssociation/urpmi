@@ -2,13 +2,13 @@
 
 Name:		urpmi
 Version:	6.68
-Release:	3
+Release:	%mkrel 4
+Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch0:		urpmi.rsync.patch
 Patch1:		urpmi.urpme-lock.patch
-Summary:	Command-line software installation tools
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch eject gnupg
 Requires(post):	perl-Locale-gettext
