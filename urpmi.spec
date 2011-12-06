@@ -10,6 +10,7 @@ Source0:	%{name}-%{version}.tar.xz
 Patch0:		urpmi.rsync.patch
 Patch1:		urpmi.urpme-lock.patch
 Patch2:		urpmi-inst-list.patch
+Patch3:		urpmi-doc-caption.patch
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch eject gnupg
 Requires(post):	perl-Locale-gettext
@@ -118,6 +119,9 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 
 # urpmi-inst-list.patch
 %patch2 -p1
+
+# urpmi-doc-caption.patch
+%patch3 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor \
