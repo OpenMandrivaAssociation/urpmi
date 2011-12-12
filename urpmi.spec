@@ -2,7 +2,7 @@
 
 Name:		urpmi
 Version:	6.68
-Release:	%mkrel 7
+Release:	%mkrel 8
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
