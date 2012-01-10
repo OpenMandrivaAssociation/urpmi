@@ -107,8 +107,9 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 
 %prep
 %setup -q
+# unable to reproduce! (#63930)
 # urpmi.urpme-lock.patch
-%patch1 -p0
+#patch1 -p0
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor \
