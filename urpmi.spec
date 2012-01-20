@@ -46,6 +46,7 @@ BuildRequires:	perl-Data-UUID >= 1.217.0-3
 BuildRequires:	perl-IO-Tty >= 1.100.0-3
 BuildRequires:	perl-XML-LibXML >= 1.890.0-2
 BuildRequires:	dudf-devel >= 0.15-5
+BuildRequires:	perl-URPM >= 4.38-2
 
 %description
 urpmi is Mandriva Linux's console-based software installation tool. You can
