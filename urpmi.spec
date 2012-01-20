@@ -2,7 +2,7 @@
 
 Name:		urpmi
 Version:	6.69
-Release:	1
+Release:	2
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -40,6 +40,12 @@ BuildRequires:  perl-Net-Server
 BuildRequires:  rpmtools
 BuildRequires:  perl-Expect
 BuildArch:	noarch
+# temporary deps due to the perl-5.14 bump
+BuildRequires:	perl-List-MoreUtils >= 0.320.0-4
+BuildRequires:	perl-Data-UUID >= 1.217.0-3
+BuildRequires:	perl-IO-Tty >= 1.100.0-3
+BuildRequires:	perl-XML-LibXML >= 1.890.0-2
+BuildRequires:	dudf-devel >= 0.15-5
 
 %description
 urpmi is Mandriva Linux's console-based software installation tool. You can
