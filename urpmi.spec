@@ -2,16 +2,17 @@
 
 Name:		urpmi
 Version:	6.69
-Release:	3
+Release:	2
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
+Patch2:		urpmi-6.69-dont-load-unused-and-deprecated-Switch-module.patch
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch eject gnupg
-Requires(post):	perl-Locale-gettext
-Requires(post):	perl-URPM >= 4.33
+Requires(post):	perl-Locale-gettext >= 1.50.0-9
+Requires(post):	perl-URPM >= 4.38-3
 # gzip is used in perl-URPM for synthesis and hdlist
 Requires(post):	gzip
 Requires:	genhdlist2
@@ -25,7 +26,7 @@ BuildRequires:	gettext intltool
 BuildRequires:	perl
 BuildRequires:	perl-File-Slurp
 BuildRequires:	perl(Net::LDAP)
-BuildRequires:	perl-URPM
+BuildRequires:	perl-URPM >= 4.38-3
 BuildRequires:	perl-MDV-Packdrakeng
 BuildRequires:	perl-MDV-Distribconf
 BuildRequires:	perl(MDV::Distribconf::Build)
@@ -33,7 +34,7 @@ BuildRequires:	perl-Locale-gettext
 BuildRequires:  perl_checker
 # for make test:
 BuildRequires:	perl-Test-Pod
-BuildRequires:	perl-XML-LibXML
+BuildRequires:	perl-XML-LibXML >= 1.890.0-3
 BuildRequires:  glibc-static-devel
 BuildRequires:  perl-Net-Server
 # for genhdlist in make test:
@@ -41,12 +42,13 @@ BuildRequires:  rpmtools
 BuildRequires:  perl-Expect
 BuildArch:	noarch
 # temporary deps due to the perl-5.14 bump
-BuildRequires:	perl-List-MoreUtils >= 0.320.0-4
-BuildRequires:	perl-Data-UUID >= 1.217.0-3
-BuildRequires:	perl-IO-Tty >= 1.100.0-3
-BuildRequires:	perl-XML-LibXML >= 1.890.0-2
-BuildRequires:	dudf-devel >= 0.15-5
-BuildRequires:	perl-URPM >= 4.38-3
+BuildRequires:	perl-List-MoreUtils >= 0.320.0-5
+BuildRequires:	perl-IO-Tty >= 1.100.0-4
+Conflicts:	perl-List-MoreUtils < 0.320.0-5
+Conflicts:	perl-IO-Tty < 1.100.0-4
+Conflicts:	perl-XML-LibXML < 1.890.0-3
+Conflicts:	perl-XML-Parser < 2.410.0-4
+Conflicts:	perl-Term-ReadKey < 2.30-14
 
 %description
 urpmi is Mandriva Linux's console-based software installation tool. You can
@@ -104,7 +106,7 @@ Requires:	urpmi >= %{EVRD}
 Requires:	perl-dudfrpmstatus
 BuildRequires:	perl-dudfrpmstatus
 BuildRequires:	perl-XML-Writer
-BuildRequires:	perl-Data-UUID
+BuildRequires:	perl-Data-UUID >= 1.217.0-3
 BuildRequires:	perl-IO-Compress
 
 %description	dudf
@@ -117,6 +119,7 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 # unable to reproduce! (#63930)
 # urpmi.urpme-lock.patch
 #patch1 -p0
+%patch2 -p1 -b .switch~
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor \
