@@ -1,8 +1,8 @@
 %bcond_without	gurpmi
 
 Name:		urpmi
-Version:	6.69
-Release:	2
+Version:	6.70
+Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
