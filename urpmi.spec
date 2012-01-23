@@ -8,7 +8,6 @@ Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-Patch2:		urpmi-6.69-dont-load-unused-and-deprecated-Switch-module.patch
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch eject gnupg
 Requires(post):	perl-Locale-gettext >= 1.50.0-9
@@ -119,7 +118,6 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 # unable to reproduce! (#63930)
 # urpmi.urpme-lock.patch
 #patch1 -p0
-%patch2 -p1 -b .switch~
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor \
