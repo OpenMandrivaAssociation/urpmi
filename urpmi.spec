@@ -2,12 +2,13 @@
 
 Name:		urpmi
 Version:	6.70
-Release:	1
+Release:	2
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
+Patch2:		urpmi-6.70-gurpmi-mime.patch
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch eject gnupg
 Requires(post):	perl-Locale-gettext >= 1.50.0-9
@@ -115,6 +116,7 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 
 %prep
 %setup -q
+%patch2 -p1
 # unable to reproduce! (#63930)
 # urpmi.urpme-lock.patch
 #patch1 -p0
