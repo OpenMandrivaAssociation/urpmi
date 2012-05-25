@@ -24,6 +24,7 @@ Suggests:	aria2
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext intltool
 BuildRequires:	perl
+BuildRequires:	perl-devel
 BuildRequires:	perl-File-Slurp
 BuildRequires:	perl(Net::LDAP)
 BuildRequires:	perl-URPM >= 4.38-3
@@ -31,15 +32,15 @@ BuildRequires:	perl-MDV-Packdrakeng
 BuildRequires:	perl-MDV-Distribconf
 BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl-Locale-gettext
-BuildRequires:  perl_checker
+BuildRequires:	perl_checker
 # for make test:
 BuildRequires:	perl-Test-Pod
 BuildRequires:	perl-XML-LibXML >= 1.890.0-3
-BuildRequires:  glibc-static-devel
-BuildRequires:  perl-Net-Server
+BuildRequires:	glibc-static-devel
+BuildRequires:	perl-Net-Server
 # for genhdlist in make test:
-BuildRequires:  rpmtools
-BuildRequires:  perl-Expect
+BuildRequires:	rpmtools
+BuildRequires:	perl-Expect
 BuildArch:	noarch
 # temporary deps due to the perl-5.14 bump
 BuildRequires:	perl-List-MoreUtils >= 0.320.0-5
