@@ -1,8 +1,8 @@
 %bcond_without	gurpmi
 
 Name:		urpmi
-Version:	6.70
-Release:	2
+Version:	6.71
+Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -19,7 +19,7 @@ Requires:	genhdlist2
 Requires:	perl-Time-ZoneInfo
 Requires:	perl-Filesys-Df
 Requires:	meta-task
-Suggests:	perl-Hal-Cdroms
+Suggests:	perl-Hal-Cdroms >= 0.04
 Suggests:	aria2
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext intltool
