@@ -1,0 +1,8 @@
+diff -urN urpmi-6.70/gurpmi.desktop.in urpmi-6.70-patched/gurpmi.desktop.in
+--- urpmi-6.70/gurpmi.desktop.in	2011-07-25 01:55:03.000000000 +1100
++++ urpmi-6.70-patched/gurpmi.desktop.in	2012-05-25 00:17:56.086141272 +1100
+@@ -8,3 +8,4 @@
+ Categories=GTK;PackageManager;Settings;
+ MimeType=application/x-rpm;application/x-urpmi;
+ NoDisplay=true
++InitialPreference=6

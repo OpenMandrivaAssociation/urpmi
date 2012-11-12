@@ -1,0 +1,19 @@
+--- urpme.orig  2011-08-10 13:51:44.000000000 +0000
++++ urpme       2011-08-16 12:26:29.982109033 +0000
+@@ -175,6 +175,7 @@
+   N("removing %s", join(' ', sort @toremove)), "\n";
+ 
+ exit 0 if $env;
++my $rpm_lock = !$env && !$options{nolock} && urpm::lock::rpm_db($urpm, 'exclusive', wait => $options{wait_lock});
+ 
+ my %remove_options = (
+     test => $test,
+@@ -186,6 +187,8 @@
+     ? urpm::parallel::remove($urpm, \@toremove, %remove_options)
+     : urpm::install::install($urpm, \@toremove, {}, {}, %remove_options);
+ 
++$rpm_lock->unlock if $rpm_lock;
++
+ if (@errors) {
+     #- Warning : the following message is parsed in urpm::parallel_*
+     $urpm->{fatal}(2, N("Removal failed") . ":\n" . join("\n",  map { "\t$_" } @errors));
