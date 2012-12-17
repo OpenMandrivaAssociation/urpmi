@@ -27,8 +27,10 @@ Requires:	meta-task
 Requires:	perl-Locale-gettext >= 1.50.0-10
 Requires:	perl-Term-ReadKey >= 2.30-16
 Requires:	perl-XML-LibXML >= 1.980.0-2
-# /update
+# (tpg) hal have been osboleted by systemd in mdv 201200
+%if %mdvver < 201200
 Suggests:	perl-Hal-Cdroms
+%endif
 Suggests:	aria2
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext intltool
