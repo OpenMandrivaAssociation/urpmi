@@ -57,6 +57,7 @@ BuildArch:	noarch
 # temporary deps due to the perl-5.14 bump
 BuildRequires:	perl-List-MoreUtils
 BuildRequires:	perl-IO-Tty
+BuildRequires:	perl(RPMBDB)
 
 %description
 urpmi is ROSA Linux's console-based software installation tool. You can
