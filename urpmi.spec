@@ -8,7 +8,7 @@ Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-URL:		http://wiki.mandriva.com/en/Tools/urpmi
+URL:		https://abf.rosalinux.ru/moondrake/urpmi
 Requires:	webfetch eject gnupg
 Requires:	genhdlist2
 Requires:	perl(Time::ZoneInfo)
