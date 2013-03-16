@@ -44,13 +44,13 @@ BuildRequires:	perl(IO::Tty)
 BuildRequires:	perl(RPMBDB)
 
 %description
-urpmi is ROSA Linux's console-based software installation tool. You can
+urpmi is %{distribution}'s console-based software installation tool. You can
 use it to install software from the console in the same way as you use the
 graphical Install Software tool (rpmdrake) to install software from the
 desktop. urpmi will follow package dependencies -- in other words, it will
 install all the other software required by the software you ask it to
 install -- and it's capable of obtaining packages from a variety of media,
-including the ROSA Linux installation DVD, your local hard disk,
+including the %{distribution} installation DVD, your local hard disk,
 and remote sources such as web or FTP sites.
 
 %if %{with gurpmi}
@@ -98,9 +98,9 @@ Summary:	Extension to urpmi to handle dudf generation and upload
 Requires:	urpmi >= %{EVRD}
 Requires:	perl-dudfrpmstatus
 BuildRequires:	perl-dudfrpmstatus
-BuildRequires:	perl-XML-Writer
-BuildRequires:	perl-Data-UUID >= 1.217.0-3
-BuildRequires:	perl-IO-Compress
+BuildRequires:	perl(XML::Writer)
+BuildRequires:	perl(Data::UUID)
+BuildRequires:	perl(IO::Compress::Gzip)
 
 %description	dudf
 urpmi-dudf is an extension module to urpmi to allow urpmi to generate
@@ -115,15 +115,15 @@ a project to enhance Linux Package Management. See http://www.mancoosi.org/
 #patch1 -p0
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor \
+perl Makefile.PL INSTALLDIRS=vendor \
 %if %{with gurpmi}
     --install-gui \
 %endif
     --install-po
-%{__make}
+%make
 
 %check
-%{__make} test
+%make test
 
 %install
 %makeinstall_std
