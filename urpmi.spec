@@ -8,9 +8,6 @@ Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-Patch3:		urpmi-6.70-gurpmi-mime.patch
-Patch4:		urpmi-6.70-rosa-release.patch
-Patch5:		urpmi-6.70-rosa-mirrors.patch
 Patch6:		urpmi-6.70-disable-orphan-dudf.patch
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch gnupg
@@ -109,31 +106,26 @@ Requires:	openldap-clients
 urpmi-ldap is an extension module to urpmi to allow to specify
 urpmi configuration (notably media) in an LDAP directory.
 
+%package	dudf
+Summary:	Extension to urpmi to handle dudf generation and upload
+Requires:	urpmi >= %{EVRD}
+Requires:	perl-dudfrpmstatus
+BuildRequires:	perl-dudfrpmstatus
+BuildRequires:	perl-XML-Writer
+BuildRequires:	perl-Data-UUID >= 1.217.0-3
+BuildRequires:	perl-IO-Compress
+
+%description	dudf
+urpmi-dudf is an extension module to urpmi to allow urpmi to generate
+and upload dudf error files. This is a part of the Europeen Mancoosi project,
+a project to enhance Linux Package Management. See http://www.mancoosi.org/
+
 %prep
 %setup -q
 
 # unable to reproduce! (#63930)
 # urpmi.urpme-lock.patch
 #patch1 -p0
-
-# urpmi-6.69.gurpmi.patch
-%patch3 -p1
-
-# enable contrib, non-free and restricted for community edition and non-free for EE
-%patch4 -p1
-
-#use rosa mirrors list
-%patch5 -p1
-
-#disable dudf and orphans
-%patch6 -p1
-
-#delete non needing dudf file
-rm -f urpm/*dudf*
-rm -f pod/8/*dudf*
-
-#fix test count after this
-sed -e 's/27/26/' -i t/01compile.t
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor \
