@@ -1,14 +1,13 @@
 %bcond_without	gurpmi
 
 Name:		urpmi
-Version:	6.71
-Release:	4
+Version:	6.72
+Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-Patch6:		urpmi-6.70-disable-orphan-dudf.patch
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
 Requires:	webfetch gnupg
 Requires(post):	perl-Locale-gettext
@@ -152,20 +151,9 @@ rm -f %{buildroot}%{perl_vendorlib}/urpm/README*
 
 # Desktop entry (only used to register new MIME type handler, so no icon etc.)
 %if %{with gurpmi}
-mkdir -p %{buildroot}%{_datadir}/applications
-cp -a gurpmi.desktop %{buildroot}%{_datadir}/applications/mandriva-gurpmi.desktop
+install -m644 gurpmi.desktop -D %{buildroot}%{_datadir}/applications/mandriva-gurpmi.desktop
+install -m644 gurpmi.xml -D %{buildroot}%{_datadir}/mime/packages/gurpmi.xml
 %endif
-
-mkdir -p %{buildroot}%{_datadir}/mime/packages
-cat > %{buildroot}%{_datadir}/mime/packages/gurpmi.xml << EOF
-<?xml version="1.0"?>
-<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-  <mime-type type="application/x-urpmi">
-    <comment>urpmi file</comment>
-    <glob pattern="*.urpmi"/>
-  </mime-type>
-</mime-info>
-EOF
 
 %find_lang %{name}
 
@@ -263,6 +251,11 @@ exit 0
 %files ldap
 %doc urpmi.schema
 %{perl_vendorlib}/urpm/ldap.pm
+
+%files dudf
+%doc urpm/README.dudf
+%{perl_vendorlib}/urpm/dudf.pm
+%{_mandir}/man8/urpmi-dudf.8*
 
 %changelog
 * Sun Aug 5 2012 akdengi <akdengi> 6.70-2
