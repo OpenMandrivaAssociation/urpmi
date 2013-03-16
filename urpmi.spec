@@ -9,49 +9,38 @@ License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
 URL:		http://wiki.mandriva.com/en/Tools/urpmi
-Requires:	webfetch gnupg
-Requires(post):	perl-Locale-gettext
-Requires(post):	perl-URPM >= 4.33
-# gzip is used in perl-URPM for synthesis and hdlist
-Requires(post):	gzip
+Requires:	webfetch eject gnupg
 Requires:	genhdlist2
-Requires:	perl-Time-ZoneInfo
-Requires:	perl-Filesys-Df
+Requires:	perl(Time::ZoneInfo)
+Requires:	perl(Filesys::Df)
 Requires:	meta-task
-# require these due to perl update in 2012.1
-# just to make sure they are installed with urpmi
-Requires:	perl-Locale-gettext >= 1.50.0-10
-Requires:	perl-Term-ReadKey >= 2.30-16
-Requires:	perl-XML-LibXML >= 1.980.0-2
 # even if this package is still named perl-Hal-Cdroms, it's been updated since
 # to use udisks, so please do *NOT* remove...
-Suggests:	perl-Hal-Cdroms
+Suggests:	perl(Hal::Cdroms)
 Suggests:	aria2
-BuildRequires:	bzip2-devel
 BuildRequires:	gettext intltool
 BuildRequires:	perl
 BuildRequires:	perl-devel
-BuildRequires:	perl-File-Slurp
+BuildRequires:	perl(File::Slurp)
 BuildRequires:	perl(Net::LDAP)
-BuildRequires:	perl-URPM
-BuildRequires:	perl-MDV-Packdrakeng
-BuildRequires:	perl-MDV-Distribconf
+BuildRequires:	perl(URPM)
+BuildRequires:	perl(MDV::Packdrakeng)
+BuildRequires:	perl(MDV::Distribconf)
 BuildRequires:	perl(MDV::Distribconf::Build)
-BuildRequires:	perl-Locale-gettext
+BuildRequires:	perl(Locale::gettext)
 BuildRequires:  perl_checker
 BuildRequires:	intltool
 # for make test:
-BuildRequires:	perl-Test-Pod
-BuildRequires:	perl-XML-LibXML
+BuildRequires:	perl(Test::Pod)
+BuildRequires:	perl(XML::LibXML)
 BuildRequires:  glibc-static-devel
-BuildRequires:  perl-Net-Server
+BuildRequires:  perl(Net::Server) 
 # for genhdlist in make test:
 BuildRequires:  rpmtools
-BuildRequires:  perl-Expect
+BuildRequires:  perl(Expect)
 BuildArch:	noarch
 # temporary deps due to the perl-5.14 bump
-BuildRequires:	perl-List-MoreUtils
-BuildRequires:	perl-IO-Tty
+BuildRequires:	perl(IO::Tty)
 BuildRequires:	perl(RPMBDB)
 
 %description
@@ -72,7 +61,7 @@ Requires:	usermode usermode-consoleonly
 Obsoletes:	grpmi
 Provides:	grpmi
 Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
+Requires(postun):desktop-file-utils
 
 %description -n	gurpmi
 gurpmi is a graphical front-end to urpmi.
