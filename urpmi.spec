@@ -1,7 +1,7 @@
 %bcond_without	gurpmi
 
 Name:		urpmi
-Version:	6.72
+Version:	7.20
 Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
@@ -177,6 +177,7 @@ exit 0
 %{_sbindir}/urpmi.removemedia
 %{_sbindir}/urpmi.update
 %{_sbindir}/urpmi.recover
+%{_mandir}/man3/gurpm*
 %{_mandir}/man3/urpm*
 %{_mandir}/man5/urpm*
 %{_mandir}/man5/proxy*
