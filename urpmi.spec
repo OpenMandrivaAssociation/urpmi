@@ -1,7 +1,7 @@
 %bcond_without	gurpmi
 
 Name:		urpmi
-Version:	7.20
+Version:	7.23
 Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
@@ -225,6 +225,7 @@ exit 0
 %{_datadir}/applications/mandriva-gurpmi.desktop
 %{_datadir}/mime/packages/gurpmi.xml
 %{perl_vendorlib}/gurpmi.pm
+%{perl_vendorlib}/gurpm/RPMProgressDialog.pm
 %endif
 
 %files parallel-ka-run
