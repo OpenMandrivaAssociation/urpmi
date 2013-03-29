@@ -1,4 +1,4 @@
-%bcond_without	gurpmi
+%bcond_without gurpmi
 
 Name:		urpmi
 Version:	7.23
@@ -9,7 +9,9 @@ License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
 URL:		https://abf.rosalinux.ru/moondrake/urpmi
-Requires:	webfetch eject gnupg
+Requires:	webfetch
+Requires:	eject
+Requires:	gnupg
 Requires:	genhdlist2
 Requires:	perl(Time::ZoneInfo)
 Requires:	perl(Filesys::Df)
@@ -18,7 +20,8 @@ Requires:	meta-task
 # to use udisks, so please do *NOT* remove...
 Suggests:	perl(Hal::Cdroms)
 Suggests:	aria2
-BuildRequires:	gettext intltool
+BuildRequires:	gettext
+BuildRequires:	intltool
 BuildRequires:	perl
 BuildRequires:	perl-devel
 BuildRequires:	perl(File::Slurp)
@@ -28,17 +31,18 @@ BuildRequires:	perl(MDV::Packdrakeng)
 BuildRequires:	perl(MDV::Distribconf)
 BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl(Locale::gettext)
-BuildRequires:  perl_checker
+BuildRequires:	perl_checker
 BuildRequires:	intltool
 # for make test:
 BuildRequires:	perl(Test::Pod)
+BuildRequires:	perl(Test::Pod::Coverage)
 BuildRequires:	perl(XML::LibXML)
-BuildRequires:  glibc-static-devel
-BuildRequires:  perl(Net::Server) 
+BuildRequires:	glibc-static-devel
+BuildRequires:	perl(Net::Server) 
 # for genhdlist in make test:
-BuildRequires:  rpmtools
-BuildRequires:  perl(Expect)
-BuildArch:	noarch
+BuildRequires:	rpmtools
+BuildRequires:	perl(Expect)
+BuildArch:		noarch
 # temporary deps due to the perl-5.14 bump
 BuildRequires:	perl(IO::Tty)
 BuildRequires:	perl(RPMBDB)
@@ -57,43 +61,44 @@ and remote sources such as web or FTP sites.
 %package -n	gurpmi
 Summary:	User mode rpm GUI install
 Requires:	urpmi >= %{EVRD}
-Requires:	usermode usermode-consoleonly
-Obsoletes:	grpmi
-Provides:	grpmi
-Requires(post): desktop-file-utils
-Requires(postun):desktop-file-utils
+Requires:	usermode
+Requires:	usermode-consoleonly
+Obsoletes:	grpmi < %{version}
+Provides:	grpmi = %{version}
+Requires(post):	desktop-file-utils
+Requires(postun):	desktop-file-utils
 
 %description -n	gurpmi
 gurpmi is a graphical front-end to urpmi.
 %endif
 
-%package	parallel-ka-run
+%package parallel-ka-run
 Summary:	Parallel extensions to urpmi using ka-run
 Requires:	urpmi >= %{EVRD}
 Requires:	parallel-tools
 
-%description	parallel-ka-run
+%description parallel-ka-run
 urpmi-parallel-ka-run is an extension module to urpmi for handling
 distributed installation using ka-run or Taktuk tools.
 
-%package	parallel-ssh
+%package parallel-ssh
 Summary:	Parallel extensions to urpmi using ssh and scp
 Requires:	urpmi >= %{EVRD} openssh-clients perl
 
-%description	parallel-ssh
+%description parallel-ssh
 urpmi-parallel-ssh is an extension module to urpmi for handling
 distributed installation using ssh and scp tools.
 
-%package	ldap
+%package ldap
 Summary:	Extension to urpmi to specify media configuration via LDAP
 Requires:	urpmi >= %{EVRD}
 Requires:	openldap-clients
 
-%description	ldap
+%description ldap
 urpmi-ldap is an extension module to urpmi to allow to specify
 urpmi configuration (notably media) in an LDAP directory.
 
-%package	dudf
+%package dudf
 Summary:	Extension to urpmi to handle dudf generation and upload
 Requires:	urpmi >= %{EVRD}
 Requires:	perl-dudfrpmstatus
@@ -102,10 +107,11 @@ BuildRequires:	perl(XML::Writer)
 BuildRequires:	perl(Data::UUID)
 BuildRequires:	perl(IO::Compress::Gzip)
 
-%description	dudf
+%description dudf
 urpmi-dudf is an extension module to urpmi to allow urpmi to generate
 and upload dudf error files. This is a part of the Europeen Mancoosi project,
-a project to enhance Linux Package Management. See http://www.mancoosi.org/
+a project to enhance Linux Package Management. 
+See http://www.mancoosi.org/ .
 
 %prep
 %setup -q
@@ -120,10 +126,11 @@ perl Makefile.PL INSTALLDIRS=vendor \
     --install-gui \
 %endif
     --install-po
+
 %make
 
 %check
-%make test
+make test
 
 %install
 %makeinstall_std
