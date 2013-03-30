@@ -1,7 +1,7 @@
 %bcond_without gurpmi
 
 Name:		urpmi
-Version:	7.23
+Version:	7.24
 Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
