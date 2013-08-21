@@ -1,14 +1,14 @@
 %bcond_without gurpmi
 
 Name:		urpmi
-Version:	7.24
-Release:	1
+Version:	7.25
+Release:	2
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-URL:		https://abf.rosalinux.ru/moondrake/urpmi
+URL:		https://abf.rosalinux.ru/omv_software/urpmi
 Requires:	webfetch
 Requires:	eject
 Requires:	gnupg
@@ -148,7 +148,16 @@ rm -f %{buildroot}%{perl_vendorlib}/urpm/README*
 # Desktop entry (only used to register new MIME type handler, so no icon etc.)
 %if %{with gurpmi}
 install -m644 gurpmi.desktop -D %{buildroot}%{_datadir}/applications/mandriva-gurpmi.desktop
-install -m644 gurpmi.xml -D %{buildroot}%{_datadir}/mime/packages/gurpmi.xml
+mkdir -p %{buildroot}%{_datadir}/mime/packages
+cat > %{buildroot}%{_datadir}/mime/packages/gurpmi.xml << EOF
+<?xml version="1.0"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-urpmi">
+    <comment>urpmi file</comment>
+    <glob pattern="*.urpmi"/>
+  </mime-type>
+</mime-info>
+EOF
 %endif
 
 %find_lang %{name}
