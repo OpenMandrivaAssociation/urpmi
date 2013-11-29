@@ -2,7 +2,7 @@
 
 Name:		urpmi
 Version:	7.25
-Release:	5
+Release:	6
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -10,6 +10,8 @@ Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
 Patch2:		urpmi-7.25-mirrorlist.patch
 Patch3:		urpmi-7.25-priority_upgrade.patch
+# Patch pushed to omv_software, so drop it from here once it is merged
+Patch4:		urpmi-7.25-evr_vs_EBR.patch
 URL:		https://abf.rosalinux.ru/omv_software/urpmi
 Requires:	webfetch
 Requires:	eject
@@ -125,6 +127,8 @@ See http://www.mancoosi.org/ .
 # an ugly temporary hack to stop rpm upgrades breaking the install
 # DO NOT SEND UPSTREAM
 %patch3 -p1
+
+%patch4 -p1
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor \

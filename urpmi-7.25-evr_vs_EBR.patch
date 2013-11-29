@@ -1,0 +1,21 @@
+diff -Naur urpmi-7.25.orig/urpmi urpmi-7.25/urpmi
+--- urpmi-7.25.orig/urpmi	2013-11-29 05:30:28.567521423 -0500
++++ urpmi-7.25/urpmi	2013-11-29 05:30:45.431519739 -0500
+@@ -557,7 +557,7 @@
+         foreach my $pkg (@choices) {
+             my @pkgname_string_chars = split("",$pkg->name);
+ 
+-            if( URPM::rpmEVRcompare($pkg->evr, $choices[$n-1]->evr) > 0 ) {
++            if( URPM::rpmEVRcompare($pkg->EVR, $choices[$n-1]->EVR) > 0 ) {
+                 $n = $i;
+ 
+                 foreach my $name (@all_names) {
+@@ -567,7 +567,7 @@
+         	    }
+         	}
+             }
+-	    elsif( URPM::rpmEVRcompare($pkg->evr, $choices[$n-1]->evr) == 0 ) {
++	    elsif( URPM::rpmEVRcompare($pkg->EVR, $choices[$n-1]->EVR) == 0 ) {
+                 foreach my $name (@all_names) {
+     	            my @longest_strs = lc_substr($name, $pkg->name);
+ 		    if( $longest_len < length($longest_strs[0]) ) {
