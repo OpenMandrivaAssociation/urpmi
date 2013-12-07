@@ -2,7 +2,7 @@
 
 Name:		urpmi
 Version:	7.25
-Release:	9
+Release:	10
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
