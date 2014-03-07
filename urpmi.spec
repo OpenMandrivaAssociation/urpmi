@@ -2,7 +2,7 @@
 
 Name:		urpmi
 Version:	7.26
-Release:	2
+Release:	3
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -16,9 +16,6 @@ Requires:	genhdlist2
 Requires:	perl(Time::ZoneInfo)
 Requires:	perl(Filesys::Df)
 Requires:	meta-task
-# even if this package is still named perl-Hal-Cdroms, it's been updated since
-# to use udisks, so please do *NOT* remove...
-Suggests:	perl(Hal::Cdroms)
 Suggests:	aria2
 BuildRequires:	gettext
 BuildRequires:	intltool
