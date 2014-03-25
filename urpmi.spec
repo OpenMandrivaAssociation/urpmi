@@ -45,13 +45,13 @@ BuildArch:		noarch
 #BuildRequires:	perl(RPMBDB)
 
 %description
-urpmi is %{distribution}'s console-based software installation tool. You can
+urpmi is a console-based software installation tool. You can
 use it to install software from the console in the same way as you use the
 graphical Install Software tool (rpmdrake) to install software from the
 desktop. urpmi will follow package dependencies -- in other words, it will
 install all the other software required by the software you ask it to
 install -- and it's capable of obtaining packages from a variety of media,
-including the %{distribution} installation DVD, your local hard disk,
+including the distribution installation DVD, your local hard disk,
 and remote sources such as web or FTP sites.
 
 %if %{with gurpmi}
