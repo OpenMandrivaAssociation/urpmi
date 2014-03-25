@@ -126,9 +126,9 @@ perl Makefile.PL INSTALLDIRS=vendor \
 
 %make
 
-%check
-exit 0
-make test
+# %check
+# exit 0
+# make test
 
 %install
 %makeinstall_std
