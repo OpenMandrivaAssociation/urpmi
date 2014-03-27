@@ -28,7 +28,9 @@ BuildRequires:	perl(MDV::Packdrakeng)
 BuildRequires:	perl(MDV::Distribconf)
 BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl(Locale::gettext)
+%ifnarch aarch64
 BuildRequires:	perl_checker
+%endif
 BuildRequires:	intltool
 # for make test:
 BuildRequires:	perl(Test::Pod)
