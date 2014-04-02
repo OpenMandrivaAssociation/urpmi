@@ -1,0 +1,12 @@
+diff -Naur urpmi-7.26.orig/urpm.pm urpmi-7.26/urpm.pm
+--- urpmi-7.26.orig/urpm.pm	2014-04-02 12:41:06.610651849 +0400
++++ urpmi-7.26/urpm.pm	2014-04-02 12:41:17.841263331 +0400
+@@ -56,7 +56,7 @@
+ 	'split-length' => 8,
+ 	'verify-rpm' => 1,
+ 	'post-clean' => 1,
+-	'xml-info' => 'on-demand',
++	'xml-info' => 'always',
+ 	'max-round-robin-tries' => 5,
+ 	'max-round-robin-probes' => 2,
+ 	'days-between-mirrorlist-update' => 5,
