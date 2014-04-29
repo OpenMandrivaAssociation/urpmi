@@ -1,0 +1,19 @@
+commit 4bc6197f48a50663bfb4a38e535da5dffb29e203
+Author: Crispin Boylan <crisb@mandriva.org>
+Date:   Tue Apr 29 13:54:16 2014 +0100
+
+    Only need media configure if running parallel
+
+diff --git a/urpme b/urpme
+index 5ea99b0..8ed7ca0 100755
+--- a/urpme
++++ b/urpme
+@@ -89,7 +89,7 @@ unless ($test) {
+ 
+ #- just configure parallel mode if available.
+ my $urpmi_lock = !$env && urpm::lock::urpmi_db($urpm, '', wait => $options{wait_lock});
+-urpm::media::configure($urpm,
++$parallel &&  urpm::media::configure($urpm,
+     synthesis => ($parallel ? 'none' : ''),
+     parallel => $parallel,
+     probe_with => $options{probe_with},
