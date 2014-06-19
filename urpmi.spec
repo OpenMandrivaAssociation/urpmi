@@ -2,7 +2,7 @@
 
 Name:		urpmi
 Version:	7.28
-Release:	2
+Release:	4
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -45,6 +45,10 @@ BuildArch:		noarch
 # temporary deps due to the perl-5.14 bump
 #BuildRequires:	perl(IO::Tty)
 #BuildRequires:	perl(RPMBDB)
+# For urpmi.recover
+Requires:	urpm-tools
+Requires:	perl(Date::Manip)
+Requires:	faketime
 
 %description
 urpmi is a console-based software installation tool. You can
