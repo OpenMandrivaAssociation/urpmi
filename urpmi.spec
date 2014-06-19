@@ -48,7 +48,8 @@ BuildArch:		noarch
 # For urpmi.recover
 Requires:	urpm-tools
 Requires:	perl(Date::Manip)
-Requires:	faketime
+# TODO: somebody move faketime to main...
+# Requires:	faketime
 
 %description
 urpmi is a console-based software installation tool. You can
