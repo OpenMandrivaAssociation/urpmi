@@ -28,9 +28,13 @@ BuildRequires:	perl(MDV::Packdrakeng)
 BuildRequires:	perl(MDV::Distribconf)
 BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl(Locale::gettext)
-%ifnarch aarch64
-BuildRequires:	perl_checker
-%endif
+# fedya
+# i'm not sure that we need it
+#BuildRequires:	perl_checker
+# perl_chekcer depend from ocaml
+# but ocaml not ready for arm64
+# and %ifarch macros not available
+# for noarch packages
 BuildRequires:	intltool
 # for make test:
 BuildRequires:	perl(Test::Pod)
