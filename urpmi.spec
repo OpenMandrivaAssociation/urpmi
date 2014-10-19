@@ -1,4 +1,5 @@
-%bcond_without gurpmi
+%bcond_without	gurpmi
+%bcond_with	po
 
 Name:		urpmi
 Version:	7.29
@@ -28,13 +29,14 @@ BuildRequires:	perl(MDV::Packdrakeng)
 BuildRequires:	perl(MDV::Distribconf)
 BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl(Locale::gettext)
+%if %{with po}
 # fedya
-# i'm not sure that we need it
-#BuildRequires:	perl_checker
-# perl_chekcer depend from ocaml
+# perl_checker depends from ocaml
 # but ocaml not ready for arm64
 # and %ifarch macros not available
 # for noarch packages
+BuildRequires:	perl_checker
+%endif
 BuildRequires:	intltool
 # for make test:
 BuildRequires:	perl(Test::Pod)
@@ -132,7 +134,9 @@ perl Makefile.PL INSTALLDIRS=vendor \
 %if %{with gurpmi}
     --install-gui \
 %endif
+%if %{with po}
     --install-po
+%endif
 
 %make
 
@@ -167,7 +171,9 @@ cat > %{buildroot}%{_datadir}/mime/packages/gurpmi.xml << EOF
 EOF
 %endif
 
+%if %{with po}
 %find_lang %{name}
+%endif
 
 %preun
 if [ "$1" = "0" ]; then
@@ -178,7 +184,10 @@ if [ "$1" = "0" ]; then
 fi
 exit 0
 
+%files
+%if %{with po}
 %files -f %{name}.lang
+%endif
 %doc NEWS README.zeroconf urpmi-repository-http.service
 %dir /etc/urpmi
 %dir /var/lib/urpmi
