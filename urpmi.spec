@@ -1,5 +1,5 @@
 %bcond_without	gurpmi
-%bcond_with	po
+%bcond_without	po
 
 Name:		urpmi
 Version:	7.29
