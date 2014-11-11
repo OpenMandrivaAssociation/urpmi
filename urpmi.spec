@@ -1,6 +1,6 @@
 %bcond_without	gurpmi
 %bcond_without	po
-%bcond_with	urpm-tools
+%bcond_without	urpm-tools
 
 Name:		urpmi
 Version:	7.29
