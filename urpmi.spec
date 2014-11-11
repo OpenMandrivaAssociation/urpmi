@@ -3,14 +3,14 @@
 %bcond_without	urpm-tools
 
 Name:		urpmi
-Version:	7.29
-Release:	2
+Version:	7.29.1
+Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-URL:		https://abf.rosalinux.ru/omv_software/urpmi
+URL:		https://abf.io/omv_software/urpmi
 Requires:	webfetch
 Requires:	eject
 Requires:	gnupg
