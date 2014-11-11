@@ -187,9 +187,10 @@ if [ "$1" = "0" ]; then
 fi
 exit 0
 
-%files
 %if %{with po}
 %files -f %{name}.lang
+%else
+%files
 %endif
 %doc NEWS README.zeroconf urpmi-repository-http.service
 %dir /etc/urpmi
