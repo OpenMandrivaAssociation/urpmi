@@ -1,9 +1,10 @@
 %bcond_without	gurpmi
 %bcond_without	po
+%bcond_with	urpm-tools
 
 Name:		urpmi
 Version:	7.29
-Release:	1
+Release:	2
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -52,7 +53,9 @@ BuildArch:		noarch
 #BuildRequires:	perl(IO::Tty)
 #BuildRequires:	perl(RPMBDB)
 # For urpmi.recover
+%if %{with urpm-tools}
 Requires:	urpm-tools
+%endif
 Requires:	perl(Date::Manip)
 Requires:	faketime
 
