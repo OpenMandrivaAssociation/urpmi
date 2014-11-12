@@ -4,13 +4,14 @@
 
 Name:		urpmi
 Version:	7.29.1
-Release:	1
+Release:	2
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
 URL:		https://abf.io/omv_software/urpmi
+Patch0:		urpmi-7.29.1-remove-split-0.patch
 Requires:	webfetch
 Requires:	eject
 Requires:	gnupg
@@ -131,6 +132,7 @@ See http://www.mancoosi.org/ .
 # unable to reproduce! (#63930)
 # urpmi.urpme-lock.patch
 #patch1 -p0
+%patch0 -p1
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor \
