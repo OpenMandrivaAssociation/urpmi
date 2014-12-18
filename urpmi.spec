@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.02.1
-Release:	1
+Release:	2
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -154,6 +154,8 @@ perl Makefile.PL INSTALLDIRS=vendor \
 # bash completion
 install -m644 %{name}.bash-completion -D %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 
+# for ABF compatibility
+ln -s %{_libexecdir}/urpmi.update %{buildroot}%{_sbindir}/urpmi.update
 # rpm-find-leaves is invoked by this name in rpmdrake
 ln -sf rpm-find-leaves %{buildroot}%{_bindir}/urpmi_rpm-find-leaves
 
@@ -213,6 +215,8 @@ exit 0
 %{_sbindir}/urpme
 %{_sbindir}/urpmi.addmedia
 %{_sbindir}/urpmi.removemedia
+# compat symlink for ABF
+%{_sbindir}/urpmi.update
 %{_libexecdir}/urpmi.update
 %{_sbindir}/urpmi.recover
 %{_mandir}/man3/gurpm*
