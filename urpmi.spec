@@ -57,7 +57,8 @@ BuildArch:		noarch
 Requires:	urpm-tools
 %endif
 Requires:	perl(Date::Manip)
-Requires:	faketime
+#ditch for now..
+#Requires:	faketime
 
 %description
 urpmi is a console-based software installation tool. You can
@@ -212,7 +213,7 @@ exit 0
 %{_sbindir}/urpme
 %{_sbindir}/urpmi.addmedia
 %{_sbindir}/urpmi.removemedia
-%{_sbindir}/urpmi.update
+%{_libexecdir}/urpmi.update
 %{_sbindir}/urpmi.recover
 %{_mandir}/man3/gurpm*
 %{_mandir}/man3/urpm*
@@ -257,8 +258,7 @@ exit 0
 %if %{with gurpmi}
 %files -n gurpmi
 %{_bindir}/gurpmi
-%{_bindir}/gurpmi2
-%{_sbindir}/gurpmi2
+%{_libexecdir}/gurpmi2
 %{_datadir}/applications/mandriva-gurpmi.desktop
 %{_datadir}/mime/packages/gurpmi.xml
 %{perl_vendorlib}/gurpmi.pm
