@@ -1,4 +1,2 @@
-removed_sources:
-  urpmi-7.29.tar.xz: 3405b70e98e1ddc55c6475f9f62e66336bd7df48
 sources:
-  urpmi-7.29.1.tar.xz: 15a648761360eb3563346656be0b65f4bdf07b3b
+  urpmi-8.02.1.tar.xz: e43e876e9b38c7e7388c48f53085e34a2a6afec1
