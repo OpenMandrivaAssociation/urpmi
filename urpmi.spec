@@ -3,8 +3,8 @@
 %bcond_without	urpm-tools
 
 Name:		urpmi
-Version:	8.02.1
-Release:	2
+Version:	8.02.2
+Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
