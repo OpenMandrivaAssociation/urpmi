@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	2
+Release:	3
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -17,7 +17,7 @@ Requires:	gnupg
 Requires:	genhdlist2
 Requires:	perl(Time::ZoneInfo)
 Requires:	perl(Filesys::Df)
-Requires:	perl(Filesys::Sync)
+Requires:	perl(File::Sync)
 Requires:	meta-task
 Requires:	perl-Locale-gettext >= 1.50.0-23
 Requires:	perl-Term-ReadKey >= 2.320.0-5
