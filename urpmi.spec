@@ -4,13 +4,13 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	3
+Release:	4
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-URL:		https://abf.io/omv_software/urpmi
+URL:		https://abf.io/software/urpmi
 Requires:	webfetch
 Requires:	eject
 Requires:	gnupg
