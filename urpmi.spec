@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	6
+Release:	7
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -22,6 +22,8 @@ Requires:	meta-task
 Requires:	perl-Locale-gettext >= 1.50.0-23
 Requires:	perl-Term-ReadKey >= 2.320.0-5
 Requires:	perl-XML-LibXML >= 2.11.700-2
+Requires:	perl-DateTime >= 1.120.0-1
+Requires:	perl-DateTime-Locale >= 0.450.0-12
 Requires(post):	gzip
 Requires(post):	perl-Locale-gettext
 Requires(post):	perl-URPM >= 4.63-1
