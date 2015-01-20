@@ -4,13 +4,12 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	10
+Release:	11
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-Patch2:		urpmi-8.03.2-update-package-priority-list.patch
 URL:		https://abf.io/software/urpmi
 Requires:	webfetch
 Requires:	eject
@@ -142,8 +141,6 @@ See http://www.mancoosi.org/ .
 # unable to reproduce! (#63930)
 # urpmi.urpme-lock.patch
 #patch1 -p0
-
-%patch2 -p1
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor \
