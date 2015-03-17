@@ -4,12 +4,14 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	11
+Release:	12
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
+# (rxu) bring back gtk2 for now, fix gurpm call to drakbug
+Patch2:		urpmi-gtk2.patch
 URL:		https://abf.io/software/urpmi
 Requires:	webfetch
 Requires:	eject
@@ -141,6 +143,7 @@ See http://www.mancoosi.org/ .
 # unable to reproduce! (#63930)
 # urpmi.urpme-lock.patch
 #patch1 -p0
+%patch2 -p1 -b .urpmi-gtk~
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor \
