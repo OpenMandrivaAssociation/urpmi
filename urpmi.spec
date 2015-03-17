@@ -30,6 +30,7 @@ Requires(post):	gzip
 Requires(post):	perl-Locale-gettext
 Requires(post):	perl-URPM >= 4.63-1
 Suggests:	aria2
+%rename urpmi-dudf
 BuildRequires:	gettext
 BuildRequires:	intltool
 BuildRequires:	perl
@@ -121,21 +122,6 @@ Requires:	openldap-clients
 %description ldap
 urpmi-ldap is an extension module to urpmi to allow to specify
 urpmi configuration (notably media) in an LDAP directory.
-
-%package dudf
-Summary:	Extension to urpmi to handle dudf generation and upload
-Requires:	urpmi >= %{EVRD}
-Requires:	perl-dudfrpmstatus
-BuildRequires:	perl-dudfrpmstatus
-BuildRequires:	perl(XML::Writer)
-BuildRequires:	perl(Data::UUID)
-BuildRequires:	perl(IO::Compress::Gzip)
-
-%description dudf
-urpmi-dudf is an extension module to urpmi to allow urpmi to generate
-and upload dudf error files. This is a part of the Europeen Mancoosi project,
-a project to enhance Linux Package Management. 
-See http://www.mancoosi.org/ .
 
 %prep
 %setup -q
@@ -295,7 +281,3 @@ exit 0
 %doc urpmi.schema
 %{perl_vendorlib}/urpm/ldap.pm
 
-%files dudf
-%doc urpm/README.dudf
-%{perl_vendorlib}/urpm/dudf.pm
-%{_mandir}/man8/urpmi-dudf.8*
