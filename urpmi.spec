@@ -157,6 +157,10 @@ ln -s %{_libexecdir}/urpmi.update %{buildroot}%{_sbindir}/urpmi.update
 # rpm-find-leaves is invoked by this name in rpmdrake
 ln -sf rpm-find-leaves %{buildroot}%{_bindir}/urpmi_rpm-find-leaves
 
+# (rxu) don't install dudf
+rm -f %{buildroot}%{perl_vendorlib}/urpm/dudf.pm
+rm -f %{buildroot}%{_mandir}/man8/urpmi-dudf.*
+
 # Don't install READMEs twice
 rm -f %{buildroot}%{perl_vendorlib}/urpm/README*
 
@@ -265,6 +269,7 @@ exit 0
 %{_datadir}/mime/packages/gurpmi.xml
 %{perl_vendorlib}/gurpmi.pm
 %{perl_vendorlib}/gurpm/RPMProgressDialog.pm
+%{perl_vendorlib}/gurpm/Gtk2RPMProgressDialog.pm
 %endif
 
 %files parallel-ka-run
