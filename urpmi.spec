@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	13
+Release:	14
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
