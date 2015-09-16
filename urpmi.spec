@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	14
+Release:	15
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -133,6 +133,7 @@ urpmi configuration (notably media) in an LDAP directory.
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor \
+    --install-polkit \
 %if %{with gurpmi}
     --install-gui \
 %endif
@@ -264,9 +265,11 @@ exit 0
 %if %{with gurpmi}
 %files -n gurpmi
 %{_bindir}/gurpmi
+%{_bindir}/gurpmi2
 %{_libexecdir}/gurpmi2
 %{_datadir}/applications/mandriva-gurpmi.desktop
 %{_datadir}/mime/packages/gurpmi.xml
+%{_datadir}/polkit-1/actions/org.moondrake.gurpmi2.policy
 %{perl_vendorlib}/gurpmi.pm
 %{perl_vendorlib}/gurpm/RPMProgressDialog.pm
 %{perl_vendorlib}/gurpm/Gtk2RPMProgressDialog.pm
