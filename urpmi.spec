@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	15
+Release:	16
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -12,6 +12,7 @@ Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
 # (rxu) bring back gtk2 for now, fix gurpm call to drakbug
 Patch2:		urpmi-gtk2.patch
+Patch3:		0001-use-openmandriva-gurpmi2.policy.patch
 URL:		https://abf.io/software/urpmi
 Requires:	webfetch
 Requires:	eject
@@ -130,6 +131,7 @@ urpmi configuration (notably media) in an LDAP directory.
 # urpmi.urpme-lock.patch
 #patch1 -p0
 %patch2 -p1 -b .urpmi-gtk~
+%patch3 -p1 -b .gurpmi.policy~
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor \
@@ -269,7 +271,7 @@ exit 0
 %{_libexecdir}/gurpmi2
 %{_datadir}/applications/mandriva-gurpmi.desktop
 %{_datadir}/mime/packages/gurpmi.xml
-%{_datadir}/polkit-1/actions/org.moondrake.gurpmi2.policy
+%{_datadir}/polkit-1/actions/org.openmandriva.gurpmi2.policy
 %{perl_vendorlib}/gurpmi.pm
 %{perl_vendorlib}/gurpm/RPMProgressDialog.pm
 %{perl_vendorlib}/gurpm/Gtk2RPMProgressDialog.pm
