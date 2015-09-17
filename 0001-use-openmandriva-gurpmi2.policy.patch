@@ -1,0 +1,93 @@
+From 61be8ace21912461396cdfef8b19b6239e3a15dd Mon Sep 17 00:00:00 2001
+From: Alexander Khryukin <alexander@mezon.ru>
+Date: Thu, 17 Sep 2015 12:51:10 +0000
+Subject: [PATCH] use openmandriva gurpmi2.policy.
+
+---
+ polkit/Makefile                           |  4 ++--
+ polkit/org.moondrake.gurpmi2.policy.in    | 22 ----------------------
+ polkit/org.openmandriva.gurpmi2.policy.in | 22 ++++++++++++++++++++++
+ 3 files changed, 24 insertions(+), 24 deletions(-)
+ delete mode 100644 polkit/org.moondrake.gurpmi2.policy.in
+ create mode 100644 polkit/org.openmandriva.gurpmi2.policy.in
+
+diff --git a/polkit/Makefile b/polkit/Makefile
+index 085524e..1f44cb9 100644
+--- a/polkit/Makefile
++++ b/polkit/Makefile
+@@ -5,14 +5,14 @@ POLKITPOLICYDEST = $(DESTDIR)/usr/share/polkit-1/actions
+ 
+ POLICY_IN := $(wildcard *.policy.in)
+ POLICY = $(POLICY_IN:.policy.in=.policy)
+-WRAPPERS = $(patsubst org.moondrake.%.policy,%,$(POLICY))
++WRAPPERS = $(patsubst org.openmandriva.%.policy,%,$(POLICY))
+ 
+ all: $(WRAPPERS) $(POLICY)
+ 
+ clean:
+ 	rm -f  $(WRAPPERS) $(POLICY)
+ 
+-%: org.moondrake.%.policy.in
++%: org.openmandriva.%.policy.in
+ 	@echo -e '#!/bin/sh\nif  [[ "$$UID" != "0" ]] ; then\n    $(BINDIR)/pkexec $(LIBEXECDIR)/$@ "$$''@"\n    exit $$''?\nfi\nexec $(LIBEXECDIR)/$@ "$$''@"\n' > $@
+ 
+ %.policy: %.policy.in
+diff --git a/polkit/org.moondrake.gurpmi2.policy.in b/polkit/org.moondrake.gurpmi2.policy.in
+deleted file mode 100644
+index 6d0a053..0000000
+--- a/polkit/org.moondrake.gurpmi2.policy.in
++++ /dev/null
+@@ -1,22 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!DOCTYPE policyconfig PUBLIC
+-"-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+-"http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+-<policyconfig>
+-
+- <vendor>Moondrake</vendor>
+- <vendor_url>http://www.moondrake.org/</vendor_url>
+-
+- <action id="org.moondrake.gurpmi2.pkexec.run">
+-    <_description>Run DrakX Package Installer</_description>
+-    <_message>Authentication is required to run DrakX Package Installer</_message>
+-    <icon_name>drakconf</icon_name>
+-    <defaults>
+-     <allow_any>no</allow_any>
+-     <allow_inactive>no</allow_inactive>
+-     <allow_active>auth_admin_keep</allow_active>
+-    </defaults>
+-    <annotate key="org.freedesktop.policykit.exec.path">/usr/libexec/gurpmi2</annotate>
+-    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+- </action>
+-</policyconfig>
+diff --git a/polkit/org.openmandriva.gurpmi2.policy.in b/polkit/org.openmandriva.gurpmi2.policy.in
+new file mode 100644
+index 0000000..a2f5387
+--- /dev/null
++++ b/polkit/org.openmandriva.gurpmi2.policy.in
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE policyconfig PUBLIC
++"-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
++"http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
++<policyconfig>
++
++ <vendor>Openmandriva</vendor>
++ <vendor_url>http://www.openmandriva.org/</vendor_url>
++
++ <action id="org.openmandriva.gurpmi2.pkexec.run">
++    <_description>Run DrakX Package Installer</_description>
++    <_message>Authentication is required to run DrakX Package Installer</_message>
++    <icon_name>drakconf</icon_name>
++    <defaults>
++     <allow_any>no</allow_any>
++     <allow_inactive>no</allow_inactive>
++     <allow_active>auth_admin_keep</allow_active>
++    </defaults>
++    <annotate key="org.freedesktop.policykit.exec.path">/usr/libexec/gurpmi2</annotate>
++    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
++ </action>
++</policyconfig>
+-- 
+2.5.0
+
