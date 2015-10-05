@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	16
+Release:	17
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -61,7 +61,7 @@ BuildRequires:	perl(Net::Server)
 # for genhdlist in make test:
 BuildRequires:	rpmtools
 BuildRequires:	perl(Expect)
-BuildArch:		noarch
+BuildArch:	noarch
 # temporary deps due to the perl-5.14 bump
 #BuildRequires:	perl(IO::Tty)
 #BuildRequires:	perl(RPMBDB)
@@ -87,8 +87,7 @@ and remote sources such as web or FTP sites.
 %package -n	gurpmi
 Summary:	User mode rpm GUI install
 Requires:	urpmi >= %{EVRD}
-Requires:	usermode
-Requires:	usermode-consoleonly
+Requires:	polkit
 Obsoletes:	grpmi < %{version}
 Provides:	grpmi = %{version}
 Requires(post):	desktop-file-utils
