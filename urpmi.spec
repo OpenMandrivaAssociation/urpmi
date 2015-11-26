@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.2
-Release:	17
+Release:	18
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -46,6 +46,7 @@ BuildRequires:	perl(Locale::gettext)
 # (tpg) from perl-base
 BuildRequires:	perl(ExtUtils::MM_Unix)
 BuildRequires:	perl(File::Glob)
+BuildRequires:	perl(ExtUtils::Manifest)
 %if %{with po}
 # fedya
 # perl_checker depends from ocaml
