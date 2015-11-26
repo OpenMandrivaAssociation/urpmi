@@ -43,6 +43,8 @@ BuildRequires:	perl(MDV::Packdrakeng)
 BuildRequires:	perl(MDV::Distribconf)
 BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl(Locale::gettext)
+# (tpg) from perl-base
+BuildRequires:	perl(ExtUtils::MM_Unix)
 %if %{with po}
 # fedya
 # perl_checker depends from ocaml
