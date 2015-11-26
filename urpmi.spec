@@ -46,6 +46,7 @@ BuildRequires:	perl(Locale::gettext)
 # (tpg) from perl-base
 BuildRequires:	perl(ExtUtils::Install)
 BuildRequires:	perl(ExtUtils::MM_Unix)
+BuildRequires:	perl(ExtUtils::Command::MM)
 BuildRequires:	perl(ExtUtils::Manifest)
 BuildRequires:	perl(ExtUtils::Command)
 BuildRequires:	perl(File::Glob)
