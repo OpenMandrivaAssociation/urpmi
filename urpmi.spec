@@ -45,6 +45,7 @@ BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl(Locale::gettext)
 # (tpg) from perl-base
 BuildRequires:	perl(ExtUtils::MM_Unix)
+BuildRequires:	perl(File::Glob)
 %if %{with po}
 # fedya
 # perl_checker depends from ocaml
