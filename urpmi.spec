@@ -50,6 +50,7 @@ BuildRequires:	perl(ExtUtils::Command::MM)
 BuildRequires:	perl(ExtUtils::Manifest)
 BuildRequires:	perl(ExtUtils::Command)
 BuildRequires:	perl(File::Glob)
+BuildRequires:	perl(XML::Parser)
 %if %{with po}
 # fedya
 # perl_checker depends from ocaml
