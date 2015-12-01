@@ -3,16 +3,13 @@
 %bcond_without	urpm-tools
 
 Name:		urpmi
-Version:	8.03.2
-Release:	18
+Version:	8.03.3
+Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-# (rxu) bring back gtk2 for now, fix gurpm call to drakbug
-Patch2:		urpmi-gtk2.patch
-Patch3:		0001-use-openmandriva-gurpmi2.policy.patch
 URL:		https://abf.io/software/urpmi
 Requires:	webfetch
 Requires:	eject
@@ -138,8 +135,6 @@ urpmi configuration (notably media) in an LDAP directory.
 # unable to reproduce! (#63930)
 # urpmi.urpme-lock.patch
 #patch1 -p0
-%patch2 -p1 -b .urpmi-gtk~
-%patch3 -p1 -b .gurpmi.policy~
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor \
