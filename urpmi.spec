@@ -27,6 +27,7 @@ Requires:	perl-Term-ReadKey >= 2.320.0-5
 Requires:	perl-XML-LibXML >= 2.11.700-2
 Requires:	perl(DateTime)
 Requires:	perl(DateTime::Locale)
+Requires:	perl(DynaLoader)
 Requires(post):	gzip
 Requires(post):	perl-Locale-gettext
 Requires(post):	perl-URPM >= 4.63-1
