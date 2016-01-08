@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.3
-Release:	2
+Release:	3
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -14,7 +14,7 @@ URL:		https://abf.io/software/urpmi
 Requires:	webfetch
 Requires:	eject
 Requires:	gnupg
-Requires:	genhdlist2
+Requires:	genhdlist2 >= 7.00.2-7
 Requires:	perl(Time::ZoneInfo)
 Requires:	perl(Filesys::Df)
 Requires:	perl-File-Sync >= 0.110.0-6
@@ -24,7 +24,8 @@ Requires:	perl-Term-ReadKey >= 2.320.0-5
 Requires:	perl-XML-LibXML >= 2.11.700-2
 Requires:	perl(DateTime)
 Requires:	perl(DateTime::Locale)
-Requires:	perl(DynaLoader)
+Requires:	perl(DynaLoader) >= 2:5.20.3-1.2
+Requires:	perl-base >= 2:5.20.3-1.2
 Requires(post):	gzip
 Requires(post):	perl-Locale-gettext
 Requires(post):	perl-URPM >= 4.63-1
@@ -33,22 +34,25 @@ Suggests:	aria2
 BuildRequires:	gettext
 BuildRequires:	intltool
 BuildRequires:	perl
+#BuildRequires:	perl >= 2:5.20.3-1.2
+#BuildRequires:	perl-devel >= 2:5.20.3-1.2
 BuildRequires:	perl-devel
 BuildRequires:	perl(File::Slurp)
 BuildRequires:	perl(Net::LDAP)
+#BuildRequires:	perl(URPM) >= 4.65.1-2
 BuildRequires:	perl(URPM)
 BuildRequires:	perl(MDV::Packdrakeng)
 BuildRequires:	perl(MDV::Distribconf)
 BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl(Locale::gettext)
 # (tpg) from perl-base
-BuildRequires:	perl(ExtUtils::Install)
-BuildRequires:	perl(ExtUtils::MM_Unix)
-BuildRequires:	perl(ExtUtils::Command::MM)
-BuildRequires:	perl(ExtUtils::Manifest)
-BuildRequires:	perl(ExtUtils::Command)
-BuildRequires:	perl(File::Glob)
-BuildRequires:	perl(XML::Parser)
+#BuildRequires:	perl(ExtUtils::Install)
+#BuildRequires:	perl(ExtUtils::MM_Unix)
+#BuildRequires:	perl(ExtUtils::Command::MM)
+#BuildRequires:	perl(ExtUtils::Manifest)
+#BuildRequires:	perl(ExtUtils::Command)
+#BuildRequires:	perl(File::Glob)
+#BuildRequires:	perl(XML::Parser)
 %if %{with po}
 # fedya
 # perl_checker depends from ocaml
