@@ -3,14 +3,14 @@
 %bcond_without	urpm-tools
 
 Name:		urpmi
-Version:	8.03.3
-Release:	3
+Version:	8.03.4
+Release:	1
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.xz
 Patch1:		urpmi.urpme-lock.patch
-URL:		https://abf.io/software/urpmi
+URL:		https://github.com/OpenMandrivaSoftware/urpmi
 Requires:	webfetch
 Requires:	eject
 Requires:	gnupg
