@@ -32,7 +32,7 @@ Suggests:	aria2
 BuildRequires:	gettext
 BuildRequires:	intltool
 BuildRequires:	perl
-BuildRequires:	perl-devel
+BuildRequires:	perl-devel >= 2:5.20.3-4
 BuildRequires:	perl(File::Slurp)
 BuildRequires:	perl(Net::LDAP)
 BuildRequires:	perl(URPM)
@@ -41,12 +41,12 @@ BuildRequires:	perl(MDV::Distribconf)
 BuildRequires:	perl(MDV::Distribconf::Build)
 BuildRequires:	perl(Locale::gettext)
 # (tpg) needed for splitted perl now it is WIP
-BuildRequires:	perl(ExtUtils::Install) >= 2:5.20.3-4
-BuildRequires:	perl(ExtUtils::MM_Unix) >= 2:5.20.3-4
-BuildRequires:	perl(ExtUtils::Command::MM) >= 2:5.20.3-4
-BuildRequires:	perl(ExtUtils::Manifest) >= 2:5.20.3-4
-BuildRequires:	perl(ExtUtils::Command) >= 2:5.20.3-4
-BuildRequires:	perl(File::Glob) >= 2:5.20.3-4
+BuildRequires:	perl(ExtUtils::Install)
+BuildRequires:	perl(ExtUtils::MM_Unix)
+BuildRequires:	perl(ExtUtils::Command::MM)
+BuildRequires:	perl(ExtUtils::Manifest)
+BuildRequires:	perl(ExtUtils::Command)
+BuildRequires:	perl(File::Glob)
 BuildRequires:	perl(XML::Parser)
 %if %{with po}
 # fedya
