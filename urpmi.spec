@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.4
-Release:	2
+Release:	3
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -292,4 +292,3 @@ exit 0
 %files ldap
 %doc urpmi.schema
 %{perl_vendorlib}/urpm/ldap.pm
-
