@@ -4,7 +4,7 @@
 
 Name:		urpmi
 Version:	8.03.4
-Release:	5
+Release:	6
 Summary:	Command-line software installation tools
 Group:		System/Configuration/Packaging
 License:	GPLv2+
@@ -184,6 +184,10 @@ cat > %{buildroot}%{_datadir}/mime/packages/gurpmi.xml << EOF
 EOF
 %endif
 
+# (tpg) get rid of this crap
+printf '%s\n' "/^julia-0.6.0-0.1.pre.alpha/" >> %{buildroot}%{_sysconfdir}/urpmi/skip.list
+printf '%s\n' "/^lib64llvm-devel-3.8.1-1.1/" >> %{buildroot}%{_sysconfdir}/urpmi/skip.list
+
 %if %{with po}
 %find_lang %{name}
 %endif
@@ -209,7 +213,7 @@ exit 0
 %dir /var/cache/urpmi/partial
 %dir /var/cache/urpmi/headers
 %dir /var/cache/urpmi/rpms
-%config(noreplace) /etc/urpmi/skip.list
+%config /etc/urpmi/skip.list
 %config(noreplace) /etc/urpmi/inst.list
 %{_sysconfdir}/bash_completion.d/%{name}
 %{_bindir}/urpmi_rpm-find-leaves
