@@ -29,6 +29,7 @@ Requires(post):	perl-Locale-gettext
 Requires(post):	perl-URPM >= 4.63-1
 Suggests:	aria2
 %rename urpmi-dudf
+BuildRequires:	make
 BuildRequires:	gettext
 BuildRequires:	intltool
 BuildRequires:	perl
